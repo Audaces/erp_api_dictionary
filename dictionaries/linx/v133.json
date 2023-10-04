@@ -1,0 +1,67 @@
+{
+    "auth" : {
+        "endpoint" : "https://webapi-aceitacao.microvix.com.br/api/integracao",
+        "bodyparam" : {
+        },
+        "queryparam" : {
+        },
+        "method" : "POST",
+        "send_as_json" : false
+    },
+    "finished_product" : {
+        "endpoint" : "https://webapi-aceitacao.microvix.com.br/api/integracao",
+        "method" : "POST",
+        "send_as_json" : false,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "cod_produto",
+                "name" : "nome",
+                "reference" : "referencia",
+                "description" : "desc_colecao",
+                "value" : "peso_bruto",
+                "measure_unit" : "unidade",
+                "product_group" : "desc_linha",
+                "suplier" : "cod_fornecedor",
+                "notes" : "desc_marca"
+            },
+            "xml_res" : {
+                "keys" : "Microvix.ResponseData.C.D",
+                "values_array" : "Microvix.ResponseData.R",
+                "values_data" : "D"
+            }
+        }
+    },
+    "raw_material" : {
+        "endpoint" : "https://webapi-aceitacao.microvix.com.br/api/integracao",
+        "method" : "POST",
+        "send_as_json" : false,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "cod_produto",
+                "name" : "nome",
+                "reference" : "referencia",
+                "description" : "desc_colecao",
+                "value" : "peso_bruto",
+                "measure_unit" : "unidade",
+                "product_group" : "desc_linha",
+                "suplier" : "cod_fornecedor",
+                "notes" : "desc_marca"
+            },
+            "xml_res" : {
+                "keys" : "Microvix.ResponseData.C.D",
+                "values_array" : "Microvix.ResponseData.R",
+                "values_data" : "D"
+            }
+        }
+    }
+}

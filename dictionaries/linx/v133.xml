@@ -1,0 +1,32 @@
+<AudacesApiErp>
+    <finished_product>
+        <LinxMicrovix>
+            <Authentication user="{user}" password="{password}" />
+            <IdPortal>{portal}</IdPortal>
+            <Command>
+                <Name>LinxProdutos</Name>
+                <Parameters>
+                    <Parameter id="cnpjEmp">{cnpjEmp}</Parameter>
+                    <Parameter id="chave">{chave}</Parameter>
+                    <Parameter id="dt_update_inicio">2020-01-01</Parameter>
+                    <Parameter id="dt_update_fim">2023-12-31</Parameter>
+                </Parameters>
+            </Command>
+        </LinxMicrovix>
+    </finished_product>
+    <raw_material>
+        <LinxMicrovix>
+            <Authentication user="{user}" password="{password}" />
+            <IdPortal>{portal}</IdPortal>
+            <Command>
+                <Name>LinxProdutos</Name>
+                <Parameters>
+                    <Parameter id="cnpjEmp">{cnpjEmp}</Parameter>
+                    <Parameter id="chave">{chave}</Parameter>
+                    <Parameter id="dt_update_inicio">2020-01-01</Parameter>
+                    <Parameter id="dt_update_fim">2023-12-31</Parameter>
+                </Parameters>
+            </Command>
+        </LinxMicrovix>
+    </raw_material>
+</AudacesApiErp>
