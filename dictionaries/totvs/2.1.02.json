@@ -1,0 +1,434 @@
+{
+    "auth" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/authorization/v2/token",
+        "bodyparam" : {
+        },
+        "queryparam" : {
+        },
+        "method" : "POST",
+        "send_as_json" : false,
+        "headers" : {
+            "accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "expires" : "expires_in"
+    },
+    "raw_material" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product/v2/products/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "page": 1,
+            "pageSize": 500,
+            "order": "1",
+            "option": {
+                "branchInfoCode": 5,
+                "measurementTableOmniType": 1,
+                "isActive": true,
+                "isRawMaterial": true
+            },
+            "filter": {
+                "startProductCode": 1,
+                "endProductCode": 92448,
+                "branchInfo": {
+                    "branchCode": 5,
+                    "isActive": true,
+                    "isRawMaterial": true
+                }
+            },
+            "expand": "measurementTableomni,classifications,additionalFields,suppliers,referenceCodeSequences,additionalColorInformation,additionalFields,description,descriptive,details"
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "uid" : "productCode",
+                "name" : "productName",
+                "reference" : "referenceName",
+                "description" : "description",
+                "value" : "cst",
+                "measure_unit" : "measuredUnit",
+                "product_group" : "referenceName",
+                "suplier" : "suppliers[0].name",
+                "notes" : "descriptive"
+            },
+            "custom_keys" : {
+                "reference_code": "ReferenceCode",
+                "size": "size",
+                "Cor": "colorName",
+                "Observação": "referenceName",
+                "reference_code_sequences" : {
+                    "referenceCodeSequences" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": false, 
+                        "options": "name"
+                    }
+                },
+                "fornecedores" : {
+                    "suppliers" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": "false", 
+                        "options": "name"
+                    }
+                }
+            }
+        }
+    },
+    "activity" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product-engineering/v2/services/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "filter": {
+                "startServiceCode": 1,
+                "endServiceCode": 100000,
+                "inactive": false
+            },
+            "page": 1,
+            "pageSize": 500,
+            "order": null
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "uid" : "serviceCode",
+                "name" : "serviceName",
+                "reference" : "serviceTypeNameCode",
+                "description" : "",
+                "value": "payServiceValue",
+                "measure_unit": "defaultUnit",
+                "time": "",
+                "notes": "",
+                "sector": "",
+                "machine": ""
+            },
+            "custom_keys" : {
+            }
+        }
+    },
+    "finished_product" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product/v2/products/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "page": 1,
+            "pageSize": 50,
+            "order": "1",
+            "option": {
+                "branchInfoCode": 5,
+                "measurementTableOmniType": 1,
+                "isActive": true,
+                "isFinishedProduct": true,
+                "isRawMaterial": false
+            },
+            "filter": {
+                "startProductCode": 24000,
+                "endProductCode": 32448,
+                "branchInfo": {
+                    "branchCode": 5,
+                    "isActive": true,
+                    "isFinishedProduct": true,
+                    "isRawMaterial": false
+                }
+            },
+            "expand": "measurementTableomni,classifications,additionalFields,suppliers,referenceCodeSequences,additionalColorInformation,additionalFields,description,descriptive,details"
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "uid" : "productCode",
+                "name" : "productName",
+                "reference" : "referenceName",
+                "description" : "description",
+                "collection" : "classifications.typeName=COLECAO:name",
+                "value" : "cst"
+            },
+            "custom_keys" : {
+                "reference_code": "ReferenceCode",
+                "size": "size",
+                "Cor": "colorName",
+                "Observação": "referenceName",
+                "classifications" : [
+                    {
+                        "typeName" : {
+                            "type": "string", 
+                            "value": "name", 
+                            "editable": false, 
+                            "options": "name"
+                        },
+                        "aditional_endpoint" : {
+                            "endpoint": "aditional_customfields_list",
+                            "field_query": "typeCode",
+                            "param_query": "TypeCodeList"
+                        }
+                    }
+                ],
+                "reference_code_sequences" : {
+                    "referenceCodeSequences" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": false, 
+                        "options": "name"
+                    }
+                },
+                "fornecedores" : {
+                    "suppliers" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": "false", 
+                        "options": "name"
+                    }
+                }
+            }
+        }
+    },
+    "aditional_customfields_list" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product/v2/classifications",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {
+            "id[]": "TypeCodeList"
+        },
+        "bodyparam" : {
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "uid" : "typeCode",
+                "name" : "name"
+            },
+            "custom_keys" : {
+            }
+        }
+    },
+    "variants" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product/v2/references/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "erp_search_id" : "ReferenceCode",
+        "bodyparam" : {
+            "page": 1,
+            "pageSize": 1000,
+            "order": "1",
+            "option": {
+                "branchInfoCode": 5,
+                "measurementTableOmniType": 1
+            },
+            "filter": {
+                "referenceCodeList": [
+                    "%ERP_SEARCH_ID%"
+                ],
+                "branchInfo": {
+                    "branchCode": 5
+                }
+            },
+            "expand": "measurementTableomni,classifications,additionalFields,suppliers,referenceCodeSequences,additionalColorInformation"
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "variants" : {
+                    "colors" : {
+                        "name" : "name",
+                        "label" : "name",
+                        "uid" : "code"
+                    },
+                    "value" : "value"
+                }
+            }
+        }
+    },
+    "garment" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/product-prototype/v2/prototypes",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "page": 1,
+            "pageSize": 50,
+            "order": "1",
+            "option": {
+                "branchInfoCode": 5,
+                "measurementTableOmniType": 1,
+                "isActive": true,
+                "isRawMaterial": true
+            },
+            "filter": {
+                "startProductCode": 24000,
+                "endProductCode": 32448,
+                "branchInfo": {
+                    "branchCode": 5,
+                    "isActive": true,
+                    "isRawMaterial": true
+                }
+            },
+            "expand": "measurementTableomni,classifications,additionalFields,suppliers,referenceCodeSequences,additionalColorInformation,additionalFields,description,descriptive,details"
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "uid" : "productCode",
+                "name" : "productName",
+                "reference" : "referenceName",
+                "description" : "description",
+                "value" : "cst",
+                "measure_unit" : "measuredUnit",
+                "product_group" : "referenceName",
+                "suplier" : "suppliers[0].name",
+                "notes" : "descriptive"
+            },
+            "custom_keys" : {
+                "reference_code": "ReferenceCode",
+                "size": "size",
+                "reference_code_sequences" : {
+                    "referenceCodeSequences" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": false, 
+                        "options": "name"
+                    }
+                },
+                "for_necedores" : {
+                    "suppliers" : {
+                        "type": "string", 
+                        "value": "", 
+                        "editable": "false", 
+                        "options": "name"
+                    }
+                }
+            }
+        }
+    },
+    "picture" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/image/v2/product/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "erp_search_id" : "productCode",
+        "bodyparam" : {
+            "filter": {
+                "productCodeList": [
+                    "%REFERENCE_ID%"
+                ]
+            },
+            "page": 1,
+            "pageSize": 50
+        },
+        "output" : {
+            "result_list_key" : "items[0].images",
+            "keys" : {
+                "description": "imageName",
+                "uid": "imageCode",
+                "size": "",
+                "extension": "typeImageName",
+                "image_raw" : "imageFile"
+            }
+        }
+    },
+    "picture_save" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/image/v2/product",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "name": "str%NAME%",
+            "description": "str%DESCRIPTION%",
+            "base64": "str%IMAGE_RAW%",
+            "productCode": "int%GARMENT_UID%",
+            "replicateTo": "Product"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid": "code",
+                "status": ""
+            }
+        }
+    },
+    "orders" : {
+        "endpoint" : "https://apitotvsmoda.bhan.com.br/api/totvsmoda/production-order/v2/orders/search",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "bodyparam" : {
+            "filter": {
+                "branchCodeList": [
+                    1
+                ],
+                "change": {
+                    "startDate": "2020-07-11T17:12:03.803Z",
+                    "endDate": "2023-07-11T17:12:03.803Z"
+                },
+                "cycleCodeList": [
+                    2023
+                ],
+                "orderCodeList": [
+                    3266
+                ],
+                "--statusList": [
+                    0
+                ]
+            },
+            "page": 1,
+            "pageSize": 100,
+            "expand": "items, materials, finishedProductMaterials"
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "cycleCode" : "cycleCode",
+                "orderCode" : "orderCode",
+                "orderBarCode" : "orderBarCode",
+                "quantity" : "quantity",
+                "priority" : "priority",
+                "items": {
+                    "items" : {
+                        "productCode": "productCode",
+                        "productName": "productName",
+                        "colorCode": "colorCode",
+                        "colorName": "colorName",
+                        "sizeCode": "sizeCode",
+                        "sizeName": "sizeName",
+                        "referenceCode": "referenceCode",
+                        "referenceName": "referenceName",
+                        "quantity": "quantity"
+                    }
+                },
+                "material": {
+                    "material.finishedProductMaterials": {
+                          "finishedProductCode": "finishedProductCode",
+                          "finishedProductName": "finishedProductName",
+                          "materialProductCode": "materialProductCode",
+                          "materialProductName": "materialProductName",
+                          "materialColorCode": "materialColorCode",
+                          "materialColorName": "materialColorName",
+                          "materialSizeCode": "materialSizeCode",
+                          "materialSizeName": "materialSizeName",                          
+                          "materialReferenceCode": "materialReferenceCode",
+                          "materialReferenceName": "materialReferenceName",
+                          "Quantity": "estimatedQuantity",
+                          "grammageMaterial": "",
+                          "widthMaterial": "",
+                          "idPartida": "",
+                          "partida": ""                          
+                    }
+                }
+            },
+            "custom_keys" : {
+            }
+        }
+    }
+}
