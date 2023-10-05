@@ -1,0 +1,50 @@
+{
+    "orders" : {
+        "endpoint" : "https://napi.nexus.ind.br/v0/ordemproducao/icf/{icf}?token={token}",
+        "method" : "GET",
+        "send_as_json" : true,
+        "bodyparam" : {
+        },
+        "output" : {
+            "result_list_key" : "items",
+            "keys" : {
+                "cycleCode" : "cycleCode",
+                "orderCode" : "orderCode",
+                "orderBarCode" : "orderBarCode",
+                "quantity" : "quantity",
+                "priority" : "priority",
+                "items": {
+                    "items" : {
+                        "productCode": "productCode",
+                        "productName": "productName",
+                        "colorCode": "colorCode",
+                        "colorName": "colorName",
+                        "sizeCode": "sizeCode",
+                        "sizeName": "sizeName",
+                        "referenceCode": "referenceCode",
+                        "referenceName": "referenceName",
+                        "quantity": "quantity"
+                    }
+                },
+                "material": {
+                    "material.finishedProductMaterials": {
+                          "finishedProductCode": "finishedProductCode",
+                          "finishedProductName": "finishedProductName",
+                          "materialProductCode": "materialProductCode",
+                          "materialProductName": "materialProductName",
+                          "materialColorCode": "materialColorCode",
+                          "materialColorName": "materialColorName",
+                          "materialSizeCode": "materialSizeCode",
+                          "materialSizeName": "materialSizeName",                          
+                          "materialReferenceCode": "materialReferenceCode",
+                          "materialReferenceName": "materialReferenceName",
+                          "Quantity": "estimatedQuantity",
+                          "grammageMaterial": ""                    
+                    }
+                }
+            },
+            "custom_keys" : {
+            }
+        }
+    }
+}

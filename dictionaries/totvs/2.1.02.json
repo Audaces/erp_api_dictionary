@@ -378,8 +378,13 @@
                 "orderCodeList": [
                     3266
                 ],
-                "--statusList": [
-                    0
+                "materialClassificationList": [
+                    {
+                      "typeCode": 102,
+                      "classificationCodeList": [
+                        "TEC02"
+                      ]
+                    }
                 ]
             },
             "page": 1,

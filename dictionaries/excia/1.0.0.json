@@ -1,0 +1,38 @@
+{
+    "finished_product" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/ProdutoLista",
+        "method" : "POST",
+        "send_as_json" : false,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+            "data" : "01/01/2020"
+        },
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "codigo2",
+                "name" : "descricao",
+                "reference" : "codigo",
+                "collection" : "colecao",
+                "description" : "status",
+                "value" : "peso",
+                "measure_unit" : "unidade",
+                "product_group" : "status",
+                "suplier" : "fornecedor",
+                "notes" : "titulo_ecommerce"
+            },
+            "custom_keys" : {
+                "grupo": "grupo",
+                "familia": "familia",
+                "linha": "linha",
+                "marca": "marca",
+                "estilista": "estilista",
+                "modelista": "modelista"
+            }
+        }
+    }
+}
