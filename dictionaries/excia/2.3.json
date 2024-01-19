@@ -1,12 +1,528 @@
 {
     "finished_product" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/ProdutoLista",
-        "method" : "POST",
+        "endpoint" : "http://latinaconfec.ddns.net:1990/Produto",
+        "method" : "GET",
         "send_as_json" : false,
         "bodyparam" : {
         },
         "queryparam" : {
             "data" : "01/01/2020"
+        },
+        "erp_search_id" : "codigo",
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao",
+                "reference" : "codigo",
+                "collection" : "colecao",
+                "measure_unit" : "unidade",
+                "suplier" : "fornecedor",
+                "notes" : "titulo_ecommerce"
+            },
+            "keys_by_id" : {
+                "collection": "aditional_collection_keys_by_id"
+            },
+            "custom_keys" : {
+                "status": "status",
+                "estilista": "estilista",
+                "modelista": "modelista",
+                "codfis": "codfis",
+                "codsped": "codsped",
+                "unidade": "unidade"
+            },
+            "custom_keys_list" : {
+                "Colecoes": "aditional_collection_custom_keys_list",
+                "Cor": "aditional_cor_list",
+                "value": "aditional_value_custom_keys_list",
+                "grupo": "aditional_grupo_custom_keys_list",
+                "familia": "aditional_familia_custom_keys_list",
+                "marca": "aditional_marca_custom_keys_list",
+                "etiqueta": "aditional_etiqueta_custom_keys_list",
+                "faixa": "aditional_faixa_custom_keys_list",
+                "linha": "aditional_linha_custom_keys_list"
+            }
+        }
+    },
+    "aditional_value_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/BuscarPreco",
+        "method" : "GET",
+        "send_as_json" : true,
+        "erp_search_id" : "produto",
+        "queryparam" : {
+            "produto": "%REFERENCE_ID%"
+        },
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "preco_00"
+            }
+        }
+    },
+    "aditional_collection_keys_by_id" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/ColecaoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_collection_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/ColecaoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_grupo_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/GrupoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_familia_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/FamiliaLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_marca_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/MarcaLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_faixa_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/FaixaTamanho",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_linha_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/Linha",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_etiqueta_custom_keys_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/Etiqueta",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_cor_list" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/CorLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "cor",
+                "name" : "descricao"
+            }
+        }
+    },
+    "raw_material" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/MaterialLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "erp_search_id" : "codigo",
+        "queryparam" : {
+            "data" : "01/01/2022",
+            "codigo" : "%ERP_SEARCH_ID%"
+        },
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao",
+                "reference" : "codigo",
+                "description" : "descricao",
+                "value" : "cst",
+                "measure_unit" : "unidade",
+                "product_group" : "grupo"
+            },
+            "custom_keys" : {
+                "dt_altera": "dt_altera",
+                "sub_grupo": "sub_grupo"
+            },
+            "keys_by_id" : {
+                "product_group": "aditional_grupo_custom_keys_list"
+            },
+            "custom_keys_list" : {
+                "value": "aditional_value_custom_keys_list",
+                "grupo": "aditional_grupo_custom_keys_list"
+            }
+        }
+    },
+    "measure" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/MedidaLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "activity" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/OperacaoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao",
+                "reference" : "descricao",
+                "value": "payServiceValue",
+                "measure_unit": "defaultUnit",
+                "time": "",
+                "notes": "",
+                "sector": "",
+                "machine": "maquina"
+            },
+            "custom_keys" : {
+                "tipo": "tipo"
+            }
+        }
+    },
+    "group" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/GrupoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid": "codigo",
+                "name": "descricao",
+                "reference": "descricao",
+                "description": "descricao"
+            },
+            "custom_keys" : {
+                "prioridade": "prioridade",
+                "lote": "lote"
+            }
+        }
+    },
+    "picture" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/CarregaImagemProduto",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {
+            "codigo" : "%REFERENCE_ID%"
+        },
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "erp_search_id" : "codigo",
+        "bodyparam" : {},
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "description": "imagens[0].arquivo",
+                "uid": "codigo",
+                "size": "",
+                "extension": "",
+                "image_raw" : "imagens[0].imagem"
+            }
+        }
+    },
+    "picture_save" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/ImagemProduto",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {
+        },
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "bodyparam" : {
+            "codigo": "str%GARMENT_UID%",
+            "imagem": "str%IMAGE_RAW%"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "status": "resultado"
+            }
+        }
+    },
+    "variants" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/ProdutoEstoque",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {
+            "codigo" : "%ERP_SEARCH_ID%"
+        },
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "erp_search_id" : "codigo",
+        "bodyparam" : {},
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "variants" : {
+                    "Cor" : "cor - desc_cor"
+                }
+            }
+        }
+    },
+    "variant_items" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/BuscarFichaTecnicaProduto",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {
+            "codigo" : "%ERP_SEARCH_ID%",
+            "empresa" : "011"
+        },
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "erp_search_id" : "codigo",
+        "bodyparam" : {},
+        "output" : {
+            "result_list_key" : "insumos",
+            "raw_material" : "tipo=M",
+            "raw_material_uid" : "insumo",
+            "finished_product" : "tipo=P",
+            "finished_product_uid" : "insumo",
+            "variation" : "cor[]cor",
+            "keys" : {
+                "amount" : "consumo"
+            }
+        }
+    },
+    "garment" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/FichaTecnicaProduto",
+        "method" : "POST",
+        "send_as_json" : true,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+            "data" : "01/01/2020"
+        },
+        "erp_search_id" : "codigo",
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "cor"      : "[variants.Cor]",
+                "codigo"   : "uid",
+                
+                "colecao"  : "variants.0.custom_fields.Colecoes.value",
+                "faixa"    : "variants.0.custom_fields.faixa.value",
+                "etiqueta" : "variants.0.custom_fields.etiqueta.value",
+                "familia"  : "variants.0.custom_fields.familia.value",
+                "grupo"    : "variants.0.custom_fields.grupo.value",
+                "linha"    : "variants.0.custom_fields.linha.value",
+                "marca"    : "variants.0.custom_fields.marca.value",
+
+                "descricao" : "variants.0.description",
+                "unidade"   : "variants.0.unidade",
+                "estilista" : "variants.0.estilista",
+                "modelista" : "variants.0.modelista",                
+                "codfis"    : "variants.0.codfis",
+                "codsped"   : "variants.0.codsped",
+                "status"    : "variants.0.status"
+            },
+            "custom_keys" : {
+                "services": [
+                    {
+                        "serviceCode": "variants.activities.uid",
+                        "quantity": "variants.activities.time",
+                        "value": "variants.activities.total"
+                    }
+                ],
+                "rawMaterials": [
+                    {
+                        "insumo": "variants.materials.uid",
+                        "consumo":"SUM variants.materials.amount"
+                    }
+                ]
+            },
+            "erp_format" : {
+                "codigo": "uid",
+                "insumo": "productCode",
+                "consumo": "quantity",
+                "preco": "S",
+                "tipo": "M",
+                "cor": [
+                    {
+                        "cor": "LN0000",
+                        "cor_i": "0"
+                    }
+                ]
+            }
+        }
+    },
+    "aditional_post_garment" : {
+        "endpoint" : "http://latinaconfec.ddns.net:1990/Produto",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {
+            "codigo" : "{null}",
+            "cor" : "",
+            "grupo" : "",
+            "colecao" : "",
+            "faixa" : "",
+            "familia" : "",
+            "etiqueta" : "",
+            "marca" : "",
+            "linha" : "",
+            "status" : "",
+            "unidade" : "",
+            "codfis" : "",
+            "codsped" : "",
+            "descricao" : "",
+            "estilista" : "",
+            "modelista" : "",
+            "descricao2" : "{null}",
+            "preco" : "{null}",
+            "custo" : "{null}",
+            "obs" : "{null}",
+            "obs1" : "{null}",
+            "obs2" : "{null}",
+            "obs3" : "{null}",
+            "peso" : "{null}",
+            "gramatura" : "{null}",
+            "largura" : "{null}",
+            "compri" : "{null}",
+            "espessura" : "{null}",
+            "densidade" : "{null}",
+            "ativo" : "{null}",
+            "codigo2" : "{null}"
         },
         "header" : {
             "Token" : "{erp_user}"
@@ -14,24 +530,7 @@
         "output" : {
             "result_list_key" : "",
             "keys" : {
-                "uid" : "codigo2",
-                "name" : "descricao",
-                "reference" : "codigo",
-                "collection" : "colecao",
-                "description" : "status",
-                "value" : "peso",
-                "measure_unit" : "unidade",
-                "product_group" : "status",
-                "suplier" : "fornecedor",
-                "notes" : "titulo_ecommerce"
-            },
-            "custom_keys" : {
-                "grupo": "grupo",
-                "familia": "familia",
-                "linha": "linha",
-                "marca": "marca",
-                "estilista": "estilista",
-                "modelista": "modelista"
+                "uid" : "produto"
             }
         }
     }
