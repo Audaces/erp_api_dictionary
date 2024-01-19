@@ -253,59 +253,47 @@
         "send_as_json" : true,
         "queryparam" : {
         },
-        "bodyparam" : {
-            "page": 1,
-            "pageSize": 50,
-            "order": "1",
-            "option": {
-                "branchInfoCode": 5,
-                "measurementTableOmniType": 1,
-                "isActive": true,
-                "isRawMaterial": true
-            },
-            "filter": {
-                "startProductCode": 24000,
-                "endProductCode": 32448,
-                "branchInfo": {
-                    "branchCode": 5,
-                    "isActive": true,
-                    "isRawMaterial": true
-                }
-            },
-            "expand": "measurementTableomni,classifications,additionalFields,suppliers,referenceCodeSequences,additionalColorInformation,additionalFields,description,descriptive,details"
-        },
+        "bodyparam" : {},
         "output" : {
             "result_list_key" : "items",
             "keys" : {
-                "uid" : "productCode",
-                "name" : "productName",
-                "reference" : "referenceName",
-                "description" : "description",
-                "value" : "cst",
-                "measure_unit" : "measuredUnit",
-                "product_group" : "referenceName",
-                "suplier" : "suppliers[0].name",
-                "notes" : "descriptive"
+                "branchCode": "2",
+                "prototypeDescription": "name",
+                "gridCode" : "variants.0.custom_fields.GridCode.value"
             },
             "custom_keys" : {
-                "reference_code": "ReferenceCode",
-                "size": "size",
-                "reference_code_sequences" : {
-                    "referenceCodeSequences" : {
-                        "type": "string", 
-                        "value": "", 
-                        "editable": false, 
-                        "options": "name"
+                "gridQuantities": [
+                    {
+                        "colorCode": "variants.custom_fields.Cor.value",
+                        "sizes": [
+                            {
+                                "sizeName": "variants.custom_fields.size.value",
+                                "quantity": "SUM variants.custom_fields.size.value"
+                            }
+                        ]
                     }
-                },
-                "for_necedores" : {
-                    "suppliers" : {
-                        "type": "string", 
-                        "value": "", 
-                        "editable": "false", 
-                        "options": "name"
+                ],
+                "services": [
+                    {
+                        "serviceCode": "variants.activities.uid",
+                        "quantity": "variants.activities.time",
+                        "value": "variants.activities.total"
                     }
-                }
+                ],
+                "rawMaterials": [
+                    {
+                        "productCode": "variants.materials.uid",
+                        "descriptionAux": "variants.materials.name",
+                        "quantity":"SUM variants.materials.amount",
+                        "value": "variants.materials.total"
+                    }
+                ],
+                "classifications": [
+                    {
+                        "typeCode": "SUB_STRING(0, '-') variants.custom_fields.<OBJECT_NAME>",
+                        "code": "SUB_STRING(0, '-') variants.custom_fields.<OBJECT_NAME>.value"
+                    }
+                ]
             }
         }
     },
@@ -424,7 +412,7 @@
                           "materialSizeName": "materialSizeName",                          
                           "materialReferenceCode": "materialReferenceCode",
                           "materialReferenceName": "materialReferenceName",
-                          "Quantity": "estimatedQuantity",
+                          "quantity": "estimatedQuantity",
                           "grammageMaterial": "",
                           "widthMaterial": "",
                           "idPartida": "",
