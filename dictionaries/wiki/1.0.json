@@ -1,0 +1,306 @@
+{
+  "auth": {
+    "endpoint": "http://app.wikisistemas.com.br/api/login",
+    "method": "POST",
+    "send_as_json": true,
+    "bodyparam": {
+      "Email": "{erp_user}",
+      "Senha": "{erp_password}"
+    },
+    "queryparam": {},
+    "headers": {
+      "accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    "output": {
+      "keys": {
+		"access_token": "retorno.token"
+      }
+    }
+  },
+  "finished_product": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/produto_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "prod_id",
+    "queryparam": {
+      "id": "%REFERENCE_ID%",
+      "pagina": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "prod_emp_id": "ProdEmpId",
+        "prod_id": "ProdId",
+        "prod_referencia": "ProdReferencia",
+        "prod_descricao": "ProdDescricao",
+        "prod_descricao2": "ProdDescricao2",
+        "prod_situacao": "ProdSituacao",
+        "prod_tipo": "ProdTipo",
+        "prod_classificacao": "ProdClassificacao",
+        "prod_ncm": "ProdNcm",
+        "prod_forn_id": "ProdFornId",
+        "prod_controla_estoque": "ProdControlaEstoque",
+        "prod_estoque_minimo": "ProdEstoqueMinimo",
+        "prod_marca_id": "ProdMarcaId",
+        "prod_grupo_id": "ProdGrupoId",
+        "prod_segmento_id": "ProdSegmentoId",
+        "prod_peso_liq": "ProdPesoLiq",
+        "prod_peso_bruto": "ProdPesoBruto",
+        "prod_und": "ProdUnd",
+        "prod_altura": "ProdAltura",
+        "prod_largura": "ProdLargura",
+        "prod_comprimento": "ProdComprimento",
+        "prod_composicao": "ProdComposicao",
+        "prod_colecao_id": "ProdColecaoId",
+        "prod_modelo_id": "ProdModeloId",
+        "prod_linha_id": "ProdLinhaId",
+        "prod_categoria_id": "ProdCategoriaId",
+        "prod_foto": "ProdFoto",
+        "prod_observacao": "ProdObservacao",
+        "prod_datacad": "ProdDatacad",
+        "prod_usr_id": "ProdUsrId",
+        "prod_data_alt": "ProdDataAlt",
+        "prod_foto2": "ProdFoto2",
+        "prod_codigo_fornecedor": "ProdCodigoFornecedor",
+        "prod_kit": "prodKit",
+        "prod_controle_grade": "ProdControleGrade",
+        "prod_grade_id": "ProdGradeId",
+        "prod_sub_grupo_id": "ProdSubGrupoId"
+      },
+      "custom_keys_list": {
+        "Cor": "aditional_cor_custom_keys_list",
+        "Grade": "aditional_grade_custom_keys_list",
+        "Preco": "aditional_preco_custom_keys_list",
+        "Categoria": "aditional_categoria_custom_keys_list",
+        "Saldo_Estoque": "aditional_saldo_estoque_custom_keys_list"
+      }
+    }
+  },
+  "aditional_cor_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/cor_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "CorId",
+    "queryparam": {
+      "Id": "%REFERENCE_ID%"
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "CorId",
+        "name": "CorDescricao",
+        "date_created": "CorDatacad",
+        "company_id": "CorEmpId",
+        "user_id": "CorUsrId"
+      }
+    }
+  },
+  "aditional_grade_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/grade_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "ItemId",
+    "queryparam": {
+      "Id": "%REFERENCE_ID%"
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno[0].Itens",
+      "keys": {
+        "uid": "ItemId",
+        "size": "ItemTamanho"
+      },
+      "parent_keys": {
+        "description": "GradeDescricao",
+        "date_created": "GradeDatacad",
+        "company_id": "GradeEmpId"
+      }
+    }
+  },
+  "aditional_preco_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tabpreco_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "TabpId",
+    "queryparam": {
+      "Id": "%REFERENCE_ID%"
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "TabpId",
+        "description": "TabpDescricao",
+        "cost": "TabpCusto",
+        "final_price": "TabpPrecoFinal",
+        "date_created": "TabpDataCad",
+        "company_id": "TabpEmpId"
+      }
+    }
+  },
+  "aditional_categoria_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/categoria_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "CatId",
+    "queryparam": {
+      "Id": "%REFERENCE_ID%"
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "CatId",
+        "description": "CatDescricao",
+        "date_created": "CatDatacad",
+        "company_id": "CatEmpId",
+        "user_id": "CatUsrId"
+      }
+    }
+  },
+  "aditional_saldo_estoque_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/saldo_estoque_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "est_prod_id",
+    "queryparam": {
+      "empId": "%COMPANY_ID%",
+      "pagina": 1,
+      "prodId": "%PRODUCT_ID%",
+      "situacao": "%STATUS%",
+      "referencia": "%REFERENCE%",
+      "descricao": "%DESCRIPTION%"
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno.dados",
+      "keys": {
+        "company_id": "est_emp_id",
+        "product_id": "est_prod_id",
+        "reference": "prod_referencia",
+        "description": "prod_descricao",
+        "size": "estct_tamanho",
+        "color": "cor",
+        "stock_balance": "estct_saldo",
+        "last_update": "est_data_atualizacao",
+        "group_id": "ger_id",
+        "group_name": "grupo",
+        "subgroup": "subgrupo",
+        "brand": "marca",
+        "segment": "segmento",
+        "line": "linha",
+        "category": "categoria",
+        "product_status": "prod_situacao",
+        "creation_date": "prod_datacad",
+        "last_modification_date": "prod_data_alt"
+      }
+    }
+  },
+  "raw_material": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/materiaprima_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "Id": "%ERP_SEARCH_ID%"
+    },
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "erp_search_id": "Id",
+    "bodyparam": {},
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "MatId",
+        "name": "MatDescricao",
+        "measure_unit": "MatUnd",
+        "product_group": "MatGrupoId",
+        "color_id": "CorId",
+        "size": "MecTamanho",
+        "stock_balance": "MecSaldo"
+      }
+    }
+  },
+  "activity": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoes_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {},
+    "bodyparam": {},
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "SerId",
+        "name": "SerDescricao"
+      }
+    }
+  },
+  "operations_sheet_materials": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoesfichatecnica_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "id": "%ERP_SEARCH_ID%"
+    },
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "erp_search_id": "id",
+    "bodyparam": {},
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "FchsSerId",
+        "name": "SerDescricao",
+        "technical_sheet_id": "FchId"
+      }
+    }
+  },
+  "technical_sheet_materials": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/insumosfichatecnica_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "Id": "%ERP_SEARCH_ID%"
+    },
+    "header": {
+      "Token": "{erp_user}"
+    },
+    "erp_search_id": "Id",
+    "bodyparam": {},
+    "output": {
+      "result_list_key": "retorno",
+      "keys": {
+        "uid": "MatId",
+        "reference": "MatReferencia",
+        "name": "MatDescricao",
+        "amount": "Qtd",
+        "technical_sheet_id": "FchId"
+      }
+    }
+  }
+}
