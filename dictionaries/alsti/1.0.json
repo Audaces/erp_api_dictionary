@@ -1,0 +1,95 @@
+{
+    "finished_product": {
+        "endpoint": "http://api.alstisolucoes.com.br/v1/produtos",
+        "method": "GET",
+        "send_as_json" : true,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+            "cnpj": 26676198000111,
+            "tipoProduto": 1
+        },
+        "erp_search_id" : "referencia",
+        "header" : {},
+        "output" : {
+            "keys": {
+                "uid": "codigo",
+                "name": "descricao",
+                "description": "descricao",
+                "reference": "referencia",
+                "value": "precoBase",
+                "measure_unit": "unidade",
+                "notes": "observacao"
+            },
+            "custom_keys_list" : {
+                "variants": "aditional_cor_list"
+            }
+        }
+    },
+    "aditional_cor_list" : {
+        "endpoint" : "https://api.alstisolucoes.com.br/v1/produtoscores",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {
+            "codigo" : "uid",
+            "cnpj": 26676198000111
+        },
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid",
+            "keys" : {
+                "uid" : "cor"
+            }
+        }
+    },
+    "raw_material": {
+        "endpoint": "http://api.alstisolucoes.com.br/v1/produtos",
+        "method": "GET",
+        "send_as_json" : true,
+        "bodyparam" : {
+        },
+        "queryparam" : {
+            "cnpj": 26676198000111,
+            "tipoProduto": 2
+        },
+        "erp_search_id" : "referencia",
+        "header" : {},
+        "output" : {
+            "keys": {
+                "uid": "codigo",
+                "name": "descricao",
+                "description": "descricao",
+                "reference": "referencia",
+                "value": "precoBase",
+                "measure_unit": "unidade",
+                "notes": "observacao"
+            }
+        }
+    },
+    "garment": {
+        "endpoint" : "http://api.alstisolucoes.com.br/v1/produtos",
+        "method" : "POST",
+        "send_as_json" : true,
+        "bodyparam" : {},
+        "queryparam" : {},
+        "erp_search_id" : "codigo",
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "tipoProduto": 1,
+                "codigo"   : "uid",
+                "descricao": "variants.0.description",
+                "precoBase": "total",
+                "precoVenda": "total",
+                "situacao": "S"
+            }
+        }
+    }
+}
