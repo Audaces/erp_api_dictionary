@@ -22,9 +22,8 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/produto_get",
     "method": "GET",
     "send_as_json": true,
-    "erp_search_id": "prod_id",
+    "erp_search_id": "id",
     "queryparam": {
-      "id": "%REFERENCE_ID%",
       "pagina": 1
     },
     "bodyparam": {},
@@ -221,9 +220,7 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/materiaprima_get",
     "method": "GET",
     "send_as_json": true,
-    "queryparam": {
-      "Id": "%ERP_SEARCH_ID%"
-    },
+    "queryparam": {},
     "header": {
       "Token": "{erp_user}"
     },
