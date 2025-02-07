@@ -1,4 +1,21 @@
 {
+    "auth": {
+		"endpoint": "http://api.alstisolucoes.com.br/v1/autenticacao",
+		"method": "POST",
+		"send_as_json": true,
+		"bodyparam": {
+			"nome": "{erp_user}",
+			"senha": "{erp_password}"
+		},
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"output": {
+			"keys": {
+			  "access_token": ""
+			}
+		}
+	},
     "finished_product": {
         "endpoint": "http://api.alstisolucoes.com.br/v1/produtos",
         "method": "GET",
