@@ -33,60 +33,41 @@
     "output": {
       "result_list_key": "retorno",
       "keys": {
-        "prod_emp_id": "ProdEmpId",
-        "prod_id": "ProdId",
-        "prod_referencia": "ProdReferencia",
-        "prod_descricao": "ProdDescricao",
-        "prod_descricao2": "ProdDescricao2",
-        "prod_situacao": "ProdSituacao",
-        "prod_tipo": "ProdTipo",
-        "prod_classificacao": "ProdClassificacao",
-        "prod_ncm": "ProdNcm",
-        "prod_forn_id": "ProdFornId",
-        "prod_controla_estoque": "ProdControlaEstoque",
-        "prod_estoque_minimo": "ProdEstoqueMinimo",
-        "prod_marca_id": "ProdMarcaId",
-        "prod_grupo_id": "ProdGrupoId",
-        "prod_segmento_id": "ProdSegmentoId",
-        "prod_peso_liq": "ProdPesoLiq",
-        "prod_peso_bruto": "ProdPesoBruto",
-        "prod_und": "ProdUnd",
-        "prod_altura": "ProdAltura",
-        "prod_largura": "ProdLargura",
-        "prod_comprimento": "ProdComprimento",
-        "prod_composicao": "ProdComposicao",
-        "prod_colecao_id": "ProdColecaoId",
-        "prod_modelo_id": "ProdModeloId",
-        "prod_linha_id": "ProdLinhaId",
-        "prod_categoria_id": "ProdCategoriaId",
-        "prod_foto": "ProdFoto",
-        "prod_observacao": "ProdObservacao",
-        "prod_datacad": "ProdDatacad",
-        "prod_usr_id": "ProdUsrId",
-        "prod_data_alt": "ProdDataAlt",
-        "prod_foto2": "ProdFoto2",
-        "prod_codigo_fornecedor": "ProdCodigoFornecedor",
-        "prod_kit": "prodKit",
-        "prod_controle_grade": "ProdControleGrade",
-        "prod_grade_id": "ProdGradeId",
-        "prod_sub_grupo_id": "ProdSubGrupoId"
+        "uid": "ProdId",
+        "reference": "ProdReferencia",
+        "name": "ProdDescricao",
+        "description": "ProdDescricao",
+        "measure_unit": "ProdUnd",
+        "suplier": "ProdCodigoFornecedor",
+        "notes": "ProdObservacao"
       },
-      "custom_keys_list": {
-        "Cor": "aditional_cor_custom_keys_list",
-        "Grade": "aditional_grade_custom_keys_list",
-        "Preco": "aditional_preco_custom_keys_list",
-        "Categoria": "aditional_categoria_custom_keys_list",
-        "Saldo_Estoque": "aditional_saldo_estoque_custom_keys_list"
-      }
+      "custom_keys": {
+        "ProdEmpId": "ProdEmpId",
+        "ProdSituacao": "ProdSituacao",
+        "ProdTipo": "ProdTipo",
+        "ProdClassificacao": "ProdClassificacao",
+        "ProdNcm": "ProdNcm",
+        "ProdControlaEstoque": "ProdControlaEstoque",
+        "ProdComposicao": "ProdComposicao",
+        "ProdFoto": "ProdFoto",
+        "ProdDatacad": "ProdDatacad",
+        "ProdDataAlt": "ProdDataAlt",
+        "ProdKit": "ProdKit",
+        "ProdControleGrade": "ProdControleGrade",
+        "ProdGradeId": "ProdGradeId"
+       },
+	   "custom_keys_list": {
+	   "Cor": "aditional_cor_custom_keys_list",
+	   "Grade": "aditional_grade_custom_keys_list",
+	   "Preco": "aditional_preco_custom_keys_list"
+	  }
     }
   },
   "aditional_cor_custom_keys_list": {
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/cor_get",
     "method": "GET",
     "send_as_json": true,
-    "erp_search_id": "CorId",
     "queryparam": {
-      "Id": "%REFERENCE_ID%"
     },
     "bodyparam": {},
     "header": {
@@ -94,12 +75,10 @@
     },
     "output": {
       "result_list_key": "retorno",
+      "rule" : "uid - name",
       "keys": {
         "uid": "CorId",
-        "name": "CorDescricao",
-        "date_created": "CorDatacad",
-        "company_id": "CorEmpId",
-        "user_id": "CorUsrId"
+        "name": "CorDescricao"
       }
     }
   },
@@ -107,24 +86,18 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/grade_get",
     "method": "GET",
     "send_as_json": true,
-    "erp_search_id": "ItemId",
     "queryparam": {
-      "Id": "%REFERENCE_ID%"
     },
     "bodyparam": {},
     "header": {
       "Token": "{erp_user}"
     },
     "output": {
-      "result_list_key": "retorno[0].Itens",
+      "result_list_key": "retorno[0]",
+      "rule" : "uid - name",
       "keys": {
-        "uid": "ItemId",
-        "size": "ItemTamanho"
-      },
-      "parent_keys": {
-        "description": "GradeDescricao",
-        "date_created": "GradeDatacad",
-        "company_id": "GradeEmpId"
+        "uid": "GradeId",
+        "name": "GradeDescricao"
       }
     }
   },
@@ -132,9 +105,7 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tabpreco_get",
     "method": "GET",
     "send_as_json": true,
-    "erp_search_id": "TabpId",
     "queryparam": {
-      "Id": "%REFERENCE_ID%"
     },
     "bodyparam": {},
     "header": {
@@ -142,13 +113,11 @@
     },
     "output": {
       "result_list_key": "retorno",
+      "rule" : "uid - name",
       "keys": {
         "uid": "TabpId",
-        "description": "TabpDescricao",
-        "cost": "TabpCusto",
-        "final_price": "TabpPrecoFinal",
-        "date_created": "TabpDataCad",
-        "company_id": "TabpEmpId"
+        "name": "TabpDescricao",
+        "value": "TabpPrecoFinal"
       }
     }
   },
