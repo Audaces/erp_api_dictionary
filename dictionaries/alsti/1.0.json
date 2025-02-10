@@ -1,21 +1,24 @@
 {
     "auth": {
-		"endpoint": "http://api.alstisolucoes.com.br/v1/autenticacao",
-		"method": "POST",
-		"send_as_json": true,
-		"bodyparam": {
-			"nome": "{erp_user}",
-			"senha": "{erp_password}"
-		},
-		"headers": {
-			"Content-Type": "application/json"
-		},
-		"output": {
-			"keys": {
-			  "access_token": ""
-			}
-		}
+	"endpoint": "https://api.alstisolucoes.com.br/v1/autenticacao",
+	"method": "POST",
+	"send_as_json": true,
+	"bodyparam": {
+		"nome": "{erp_user}",
+		"senha": "{erp_password}"
 	},
+	"queryparam" : {
+	    "cnpj": <CNPJ>
+	},
+	"headers": {
+		"Content-Type": "application/json"
+	},
+	"output": {
+		"keys": {
+		  "access_token": ""
+		}
+	}
+    },
     "finished_product": {
         "endpoint": "http://api.alstisolucoes.com.br/v1/produtos",
         "method": "GET",
@@ -23,7 +26,7 @@
         "bodyparam" : {
         },
         "queryparam" : {
-            "cnpj": 26676198000111,
+            "cnpj": <CNPJ>,
             "tipoProduto": 1
         },
         "erp_search_id" : "referencia",
@@ -49,7 +52,7 @@
         "send_as_json" : true,
         "queryparam" : {
             "codigo" : "uid",
-            "cnpj": 26676198000111
+            "cnpj": <CNPJ>
         },
         "bodyparam" : {},
         "header" : {
@@ -70,7 +73,7 @@
         "bodyparam" : {
         },
         "queryparam" : {
-            "cnpj": 26676198000111,
+            "cnpj": <CNPJ>,
             "tipoProduto": 2
         },
         "erp_search_id" : "referencia",
