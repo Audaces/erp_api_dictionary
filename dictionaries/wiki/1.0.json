@@ -24,7 +24,8 @@
     "send_as_json": true,
     "erp_search_id": "id",
     "queryparam": {
-      "pagina": 1
+      "pagina": 1,
+      "audaces": 1
     },
     "bodyparam": {},
     "header": {
@@ -189,7 +190,9 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/materiaprima_get",
     "method": "GET",
     "send_as_json": true,
-    "queryparam": {},
+    "queryparam": {
+	    "audaces": 1
+    },
     "header": {
       "Token": "{erp_user}"
     },
@@ -212,7 +215,9 @@
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoes_get",
     "method": "GET",
     "send_as_json": true,
-    "queryparam": {},
+    "queryparam": {
+	    "audaces": 1
+    },
     "bodyparam": {},
     "header": {
       "Token": "{erp_user}"
