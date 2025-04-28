@@ -1,17 +1,61 @@
-# Dicionários
+# Dicionários de Integração para API Audaces ERP
 
-A API Audaces para ERP, que chamaremos a partir de agora como API, é um serviço web RESTfull no formato JSON.
+## Índice
+1. [Introdução](#introdução)
+2. [Estrutura dos Dicionários](#estrutura-dos-dicionários)
+3. [Endpoints](#endpoints)
+4. [Exemplo de Configuração](#exemplo-de-configuração)
+5. [Formatos JSON e XML](#formatos-json-e-xml)
+6. [Convenções](#convenções)
+7. [Considerações Finais](#considerações-finais)
 
-Apesar disso, ela consegue se comunicar com ERPs no formato JSON e XML, atraves de uma estrutura de dados que chamamos de dicionário. 
+## Introdução
 
-Caso o ERP use JSON, será necessário apenas um dicionário no formato JSON (que é o formato nativo da API)
+Este projeto fornece uma estrutura padronizada para integração da **API Audaces ERP** com diferentes sistemas de gestão empresarial (ERPs). A API Audaces é um serviço web **RESTful** que utiliza o formato **JSON** como padrão de comunicação, mas também suporta integrações com ERPs que utilizam **XML**. 
 
-Caso o ERP use XML, será necessário um par dicionários, um no formato XML (para comunicação com o ERP) e outro no formato JSON (para fazer a tradução dos resultados)
+A integração é realizada por meio de **dicionários**, que são arquivos de configuração que mapeiam os endpoints da API Audaces para os endpoints correspondentes do ERP. Esses dicionários permitem que a API traduza as requisições e respostas entre os dois sistemas, garantindo uma comunicação eficiente e consistente.
 
 
-Cada endpoint da API mapeado no dicionário, chama o endpoint correspondente do ERP para obter seus dados e o converte no formato da API.
+### Objetivo
 
-Os possiveis endpoints que devem ser mapeados no dicionário Json são:
+O objetivo deste projeto é simplificar e padronizar o processo de integração com diferentes ERPs, fornecendo:
+
+- **Flexibilidade**: Suporte para ERPs que utilizam JSON ou XML.
+- **Escalabilidade**: Adição de novos ERPs com facilidade, apenas criando novos dicionários.
+- **Padronização**: Estrutura consistente para todos os dicionários, facilitando a manutenção e o entendimento.
+
+### Como Funciona
+
+1. **Dicionários JSON**: Para ERPs que utilizam JSON, é necessário apenas um dicionário no formato JSON.
+2. **Dicionários JSON e XML**: Para ERPs que utilizam XML, são necessários dois dicionários:
+   - Um no formato XML para comunicação com o ERP.
+   - Outro no formato JSON para traduzir as respostas do ERP para o formato da API Audaces.
+
+Cada dicionário contém informações detalhadas sobre os endpoints do ERP, como:
+- URL do endpoint.
+- Método HTTP (GET, POST, PUT, DELETE).
+- Parâmetros de consulta (query parameters).
+- Parâmetros do corpo da requisição (body parameters).
+- Estrutura de saída (output) para mapear os dados retornados pelo ERP.
+
+### Benefícios
+
+- **Redução de Esforço**: Evita a necessidade de desenvolver integrações personalizadas para cada ERP.
+- **Manutenção Simplificada**: Alterações nos endpoints do ERP podem ser feitas diretamente nos dicionários, sem necessidade de alterar o código da API.
+- **Compatibilidade**: Suporte para uma ampla variedade de ERPs, independentemente do formato de comunicação.
+
+### Público-Alvo
+
+Este projeto é destinado a desenvolvedores e integradores que precisam conectar a API Audaces a diferentes sistemas ERP. Ele é especialmente útil para empresas que utilizam múltiplos ERPs e desejam centralizar a integração em uma única solução.
+
+
+## Estrutura dos Dicionários
+
+Os dicionários são arquivos de configuração que definem como a API Audaces ERP interage com os diferentes sistemas ERP. Eles mapeiam os endpoints da API Audaces para os endpoints correspondentes do ERP, especificando os detalhes necessários para realizar requisições e interpretar as respostas. A estrutura dos dicionários é padronizada, garantindo consistência e facilidade de manutenção.
+
+### Estrutura Geral
+
+Um dicionário é composto por um conjunto de chaves no primeiro nível, onde cada chave representa um endpoint da API Audaces. Abaixo está um exemplo básico de um dicionário:
 
 ```json
 {
@@ -27,21 +71,27 @@ Os possiveis endpoints que devem ser mapeados no dicionário Json são:
     "orders" : { }
 }
 ```
+Descrição dos Endpoints
 
-O primeiro nivel das chaves do dicionário são os endpoints expostos pela API audaces:
+Cada chave no primeiro nível do dicionário representa uma funcionalidade específica da API Audaces:
 
-* auth : contem as informações para autenticar na API do ERP
-* raw_material : contem as informações obter materiais do ERP
-* activity : contem as informações obter atividades do ERP. É apenas para leitura de dados
-* finished_product : contem as informações obter modelos do ERP. É apenas para leitura de dados
-* aditional_customfields_list : contem as informações obter campos personalizados do ERP. É apenas para leitura de dados
-* variants : contem as informações obter variantes do ERP. É apenas para leitura de dados
-* garment : contem as informações enviar dados de modelo para o ERP. É apenas para escrita de dados
-* picture : contem as informações obter imagens do ERP. É apenas para leitura de dados
-* picture_save : contem as informações para enviar dados de imagem para o ERP. É apenas para escrita de dados
-* orders : contem as informações obter ordens de compra do ERP. É apenas para leitura de dados
+- **auth**: Contém as informações necessárias para autenticar na API do ERP.
+- **raw_material**: Define como obter materiais do ERP.
+- **activity**: Define como obter atividades do ERP (somente leitura).
+- **finished_product**: Define como obter modelos do ERP (somente leitura).
+- **aditional_customfields_list**: Define como obter campos personalizados do ERP (somente leitura).
+- **variants**: Define como obter variantes do P (somente leitura).
+- **picture_save**: Define como enviar imageERP (somente leitura).
+- **garment**: Define como enviar dados de modelos para o ERP (somente escrita).
+- **picture**: Define como obter imagens do ERns para o ERP (somente escrita).
+- **orders**: Define como obter ordens de compra do ERP (somente leitura).
 
-Cada chave dessas, possui a seguinte estrututa:
+
+## Endpoints
+
+Estrutura de Cada Endpoint
+
+Cada endpoint segue uma estrutura padronizada, como mostrado abaixo:
 
 ```json
 {    
@@ -54,19 +104,113 @@ Cada chave dessas, possui a seguinte estrututa:
 }
 ```
 
-Descritos como segue:
+**Descrição dos Campos**
 
-* endpoint: tipo string, é a URL do endpoint da api do erp
-* method: tipo string, é o tipo de requisição do endpoint do erp. Valores possiveis: POST, GET, PUT, DELETE
-* send_as_json: tipo booleano, informa a requisição ao erp deve ser em formato json. Valores possiveis: true, false 
-* queryparam: tipo objeto, são os parametros que devem ser enviados na query da requisição da api do erp. Caso não seja necessário, dele ser um objeto json vazio  ` {} `
-* bodyparam: tipo objeto, são os parametros que devem ser enviados no body da requisição da api do erp. Caso não seja necessário, dele ser um objeto json vazio  ` {} `
-* output: tipo objeto, contém as informações de como os dados do erp serão lidos e interpretados pela API
+- **endpoint**: (string) URL do endpoint da API do ERP.
+- **method**: (string) Método HTTP utilizado para a requisição. Valores possíveis: POST, GET, PUT, DELETE.
+- **send_as_json**: (boolean) Indica se a requisição ao ERP deve ser enviada no formato JSON. Valores possíveis: true, false.
+- **queryparam**: (objeto) Parâmetros enviados na query string da requisição. Caso não sejam necessários, deve ser um objeto vazio { }.
+- **bodyparam**: (objeto) Parâmetros enviados no corpo da requisição. Caso não sejam necessários, deve ser um objeto vazio { }.
+- **output**: (objeto) Define como os dados retornados pelo ERP serão interpretados pela API.
 
+Detalhes do Campo `output`
 
-## Endpoint de Autenticação
+O campo `output` é responsável por mapear os dados retornados pelo ERP para o formato esperado pela API Audaces. Ele possui a seguinte estrutura:
 
-Caso o ERP necessite de autenticação, o dicionário "auth" deve ser implementado
+```json
+{
+    "result_list_key": "items",
+    "keys": {
+        "uid": "productCode",
+        "name": "productName",
+        "reference": "referenceName",
+        "description": "description",
+        "value": "1.0",
+        "measure_unit": "measuredUnit",
+        "product_group": "referenceName",
+        "suplier": "suppliersName",
+        "notes": "descriptive"
+    },
+    "custom_keys": {
+        "reference_code": "ReferenceCode",
+        "Observação": "referenceName",
+        "fornecedores": {
+            "suppliers": {
+                "type": "string",
+                "value": "",
+                "editable": "false",
+                "options": "name"
+            }
+        }
+    }
+}
+```
+
+**Descrição dos Subcampos de _output_**
+
+- **result_list_key**: (string) Nome da chave que contém a lista de resultados na resposta do ERP. Exemplo: "items".
+- **keys**: (objeto) Mapeia os campos obrigatórios da API Audaces para os campos correspondentes no ERP. As chaves são fixas na API Audaces, enquanto os valores correspondem às chaves do ERP.
+- **custom_keys**: (objeto) Define campos adicionais que não são obrigatórios na API Audaces, mas que podem ser úteis. Pode ter dois formatos:
+    - `"chave": "valor"`: Mapeia diretamente um campo adicional.
+    - `"chave": { "objeto" }`: Utilizado quando o valor retornado pelo ERP é um array ou objeto complexo.
+
+Exemplo de Configuração de Endpoint
+
+Suponha que um ERP retorne o seguinte JSON ao fazer uma requisição GET para https://api.exemplo.com/materiais?page=1&order=1:
+
+```json
+{
+    "count": 4,
+    "totalPages": 1,
+    "items": [
+        {
+            "productCode": "123",
+            "productName": "Produto Exemplo",
+            "referenceName": "REF123",
+            "description": "Descrição do Produto",
+            "cst": "10.00",
+            "measuredUnit": "UN",
+            "suppliers_name": "Fornecedor Exemplo",
+            "descriptive": "Observação"
+        }
+    ]
+}
+```
+
+O dicionário para este endpoint seria configurado assim:
+
+```json
+{
+    "finished_product": {
+        "endpoint": "https://api.exemplo.com/materiais",
+        "method": "GET",
+        "send_as_json": true,
+        "queryparam": {
+            "page": 1,
+            "order": "1"
+        },
+        "bodyparam": { },
+        "output": {
+            "result_list_key": "items",
+            "keys": {
+                "uid": "productCode",
+                "name": "productName",
+                "reference": "referenceName",
+                "description": "description",
+                "value": "cst",
+                "measure_unit": "measuredUnit",
+                "product_group": "referenceName",
+                "suplier": "suppliers_name",
+                "notes": "descriptive"
+            }
+        }
+    }
+}
+```
+
+### Endpoint de Autenticação
+
+Caso o ERP necessite de autenticação, o endpoint `auth` deve ser implementado
 
 ```json
 {
@@ -87,84 +231,28 @@ Caso o ERP necessite de autenticação, o dicionário "auth" deve ser implementa
 }
 ```
 
-Por ser um dicionário global, os dados de autenticação do usuário, como login e senha, por exemplo, NÃO devem estar presentes no dicionário. Eles serão configurados na conta do serviço da API do usuario que consumirá os dados
-
-
-## Demais endpoints
-
-Vamos definir a forma de obtenção de dados cadastrados no ERP.
-Este formato é valido para todos os demais endpoints descritos nesta documentação: `raw_material`, `activity`, `finished_product`, `aditional_customfields_list`, `variants`, `garment`, `picture`, `picture_save`, `orders`
-
-Usaremos um exemplo para ilustrar a configuração de um endpoint do dicionário
-
-Supondo um ERP hipotético, que ao fazer um GET para `https://api.exemplo.com/materiais?page=1&order=1` ele devolva o seguinte json:
+Por ser um dicionário global, os dados de autenticação do usuário, como login e senha NÃO devem estar presentes no dicionário. Eles serão identificados pelas tags: `{erp_user}` e `{erp_password}`. E serão substituidas pelas credenciais durante a execução da requisição. Exemplo de uso:
 
 ```json
 {
-    "count": 4,
-    "totalPages": 1,
-    "items": [
-        {
-            "productCode" : "",
-            "productName" : "",
-            "referenceName" : "",
-            "description" : "",
-            "cst" : "",
-            "measuredUnit" : "",
-            "referenceName" : "",
-            "suppliers_name" : "",
-            "descriptive" : ""
-        },
-        {...},
-        {...},
-        {...}
-    ]
-}       
-
-```
-
-O dicionário para este endpoint seria:
-
-```json
-{
-    "<endpoint>" : {
-        "endpoint" : "https://api.exemplo.com/materiais",
-        "method" : "GET",
-        "send_as_json" : true,
-        "queryparam" : {
-            "page": 1,
-            "order": "1"
-        },
+    "auth" : {
+        "endpoint" : "https://api.exemplo.com/login",
         "bodyparam" : {
+            "nome": "{erp_user}",
+            "senha": "{erp_password}"
         },
-        "output" : {
-            "result_list_key" : "items",
-            "keys" : {
-                "uid" : "productCode",
-                "name" : "productName",
-                "reference" : "referenceName",
-                "description" : "description",
-                "value" : "cst",
-                "measure_unit" : "measuredUnit",
-                "product_group" : "referenceName",
-                "suplier" : "suppliers_name",
-                "notes" : "descriptive"
-            },
-            "custom_keys" : {
-                "reference_code": "ReferenceCode",
-                "Observação": "referenceName",
-                "fornecedores" : {
-                    "suppliers" : {
-                        "type": "string", 
-                        "value": "", 
-                        "editable": "false", 
-                        "options": "name"
-                    }
-                }
-            }
-        }
+        "queryparam" : {
+        },
+        "method" : "POST",
+        "send_as_json" : false,
+        "headers" : {
+            "accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "expires" : "expires_in"
     }
 }
+
 ```
 
 Dividiremos em 2 gandes partes: entrada e saida de dados:
@@ -175,19 +263,101 @@ Dividiremos em 2 gandes partes: entrada e saida de dados:
   * `send_as_json` enviado no formato json
   * `queryparam` passando os parametros
   * `bodyparam` não foi necessário
-
 * Saída de dados:
   * `output` forma como a API interpretará os resultados
 
-Agora vamos detalhar a chave `output`, que são os dados de retorno do erp:
 
+## Exemplo de configuração
 
-* result_list_key: a resposta da chamada do ERP trouxe um objeto com dados da requisição e a lista de dados. `result_list_key` é o nome da chave onde vem dos dados do erp, que neste exemplo é `items`
-* keys: é um objeto json e representa os campos mandatórios da API. As chaves deste objeto são fixas e seus valores são as chaves correspondentes no ERP. Exemplo, `"uid" : "productCode"` significa que o a API usa como `uid` é chamado de `productCode` pelo ERP
-* custom_keys: são os campos adicionais, ou seja, caso se deseje obter algum campo do ERP que não esteja nos campos padrão da API. ele pode ter 2 formatos:
-  * "chave" : "valor" - neste caso segue a mesma regra da chave `key` acima descrita
-  * "chave" : {objeto} - no caso do valor retornado pelo ERP ser um array. neste caso, teremos <chave_API> : { <chave_ERP> : {} }
+Exemplo de Configuração: `finished_product`
 
+```json
+{
+    "finished_product": {
+        "endpoint": "https://api.erp-example.com/products",
+        "method": "GET",
+        "send_as_json": true,
+        "queryparam": {
+            "page": 1,
+            "limit": 50,
+            "type": "finished"
+        },
+        "bodyparam": { },
+        "output": {
+            "result_list_key": "items",
+            "keys": {
+                "uid": "product_id",
+                "name": "product_name",
+                "reference": "product_reference",
+                "description": "product_description",
+                "value": "price",
+                "measure_unit": "unit",
+                "product_group": "category",
+                "suplier": "supplier_name",
+                "notes": "additional_info"
+            }
+        }
+    }
+}
+```
+
+Exemplo de Configuração: `raw_material`
+
+```json
+{
+    "raw_material": {
+        "endpoint": "https://api.erp-example.com/materials",
+        "method": "POST",
+        "send_as_json": true,
+        "queryparam": { },
+        "bodyparam": {
+            "filter": {
+                "type": "raw_material",
+                "status": "active"
+            }
+        },
+        "output": {
+            "result_list_key": "materials",
+            "keys": {
+                "uid": "material_id",
+                "name": "material_name",
+                "description": "material_description",
+                "measure_unit": "unit",
+                "stock_quantity": "quantity",
+                "notes": "remarks"
+            }
+        }
+    }
+}
+```
+
+Exemplo de Configuração: `activity`
+
+```json
+{
+    "activity": {
+        "endpoint": "https://api.erp-example.com/activities",
+        "method": "GET",
+        "send_as_json": true,
+        "queryparam": {
+            "status": "active",
+            "type": "manufacturing"
+        },
+        "bodyparam": { },
+        "output": {
+            "result_list_key": "activities",
+            "keys": {
+                "uid": "activity_id",
+                "name": "activity_name",
+                "description": "activity_description",
+                "start_date": "start_date",
+                "end_date": "end_date",
+                "status": "status"
+            }
+        }
+    }
+}
+```
 
 ## Formatos JSON e XML
 
@@ -327,3 +497,61 @@ Repare no objeto `xml_res`, ele representa os valores de response do ERP.
 * `keys` é onde vem as chaves na resposta XML do ERP - `<ErpName> <Response> <C> <D> (...) </D> </C> (...) `
 * values_array é o array onde vem as valores na resposta XML do ERP - `<ErpName> <Response> <R>  (...) </R> (...) `
 * values_data é a chave do array de resultados, neste caso, `D` - `<ErpName> <Response> <R> <D> (...) </D> </R> (...) `
+
+
+## Convenções
+
+Para lidar com dados dinâmicos e/ou sensíveis, utilizamos convenções específicas que ajudam a identificar e processar esses valores de forma segura e padronizada. Abaixo estão as simbologias e seus respectivos usos:
+
+### 1. **Dados Fornecidos pelos Usuários**
+- Representados entre **chaves** `{}`.
+- Esses dados são fornecidos diretamente pelo usuário e substituídos dinamicamente durante a execução da requisição.
+- **Exemplo**: 
+  - `{erp_user}`: Nome de usuário do ERP.
+  - `{erp_password}`: Senha do ERP.
+
+### 2. **Dados Fornecidos pelo Audaces IDEA**
+- Representados entre **porcentagens** `%%`.
+- Esses dados são gerados ou fornecidos automaticamente pelo sistema Audaces IDEA.
+- **Exemplo**:
+  - `%REFERENCE_ID%`: Identificador de referência gerado pelo sistema.
+
+### 3. **Índices em Listas**
+- Representados entre **colchetes** `[]`.
+- Utilizados para acessar elementos específicos dentro de uma lista retornada pelo ERP.
+- **Exemplo**:
+  - `retorno[0].Itens`: Acessa o primeiro item da lista `Itens` no objeto `retorno`.
+
+### 4. **Acesso a Dados em Estruturas JSON Complexas**
+- Utiliza a notação de ponto `.` para navegar por objetos aninhados.
+- Permite acessar valores específicos dentro de estruturas JSON com múltiplos níveis.
+- **Exemplo**:
+  - `variants.custom_fields.Cor.value`: Acessa o valor do campo `Cor` dentro de `custom_fields` no objeto `variants`.
+
+### 5. **Convenções para Respostas em XML**
+- Quando o ERP retorna dados no formato XML, utilizamos as seguintes convenções para mapear os valores:
+  - **`keys`**: Define as chaves na resposta XML do ERP.
+    - **Exemplo**: `<ErpName> <Response> <C> <D> (...) </D> </C> (...)`
+  - **`values_array`**: Define o array onde os valores estão localizados na resposta XML.
+    - **Exemplo**: `<ErpName> <Response> <R> (...) </R> (...)`
+  - **`values_data`**: Define a chave do array de resultados.
+    - **Exemplo**: `<ErpName> <Response> <R> <D> (...) </D> </R> (...)`
+
+### Resumo das Convenções
+
+| Simbologia       | Descrição                                      | Exemplo                          |
+|-------------------|-----------------------------------------------|-----------------------------------|
+| `{}`             | Dados fornecidos pelos usuários               | `{erp_user}`, `{erp_password}`   |
+| `%%`             | Dados fornecidos pelo Audaces IDEA            | `%REFERENCE_ID%`                 |
+| `[]`             | Índices em listas                             | `retorno[0].Itens`               |
+| `.`              | Acesso a dados em JSON com múltiplos níveis   | `variants.custom_fields.Cor.value` |
+| `keys`           | Chaves na resposta XML                        | `<ErpName> <Response> <C> <D>`   |
+| `values_array`   | Array de valores na resposta XML              | `<ErpName> <Response> <R>`       |
+| `values_data`    | Chave do array de resultados na resposta XML  | `<ErpName> <Response> <R> <D>`   |
+
+Essas convenções garantem que os dados sejam tratados de forma consistente e segura, independentemente do formato ou da complexidade da integração com o ERP.
+
+
+## Considerações Finais
+
+A estrutura padronizada dos dicionários permite que novos ERPs sejam integrados de forma rápida e eficiente. Ao seguir este modelo, é possível garantir que a API Audaces ERP funcione de maneira consistente, independentemente das particularidades de cada ERP. Além disso, a separação clara entre entrada e saída de dados facilita a manutenção e a escalabilidade do projeto.
