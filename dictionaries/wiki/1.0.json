@@ -29,13 +29,13 @@
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
-      "result_list_key": "retorno",
+      "result_list_key": "retorno.dados",
       "keys": {
         "uid": "ProdId",
-        "reference": "ProdReferencia",
+        "reference": "ProdId",
         "name": "ProdDescricao",
         "description": "ProdDescricao",
         "measure_unit": "ProdUnd",
@@ -60,7 +60,14 @@
 	   "custom_keys_list": {
 	   "Cor": "aditional_cor_custom_keys_list",
 	   "Grade": "aditional_grade_custom_keys_list",
-	   "Preco": "aditional_preco_custom_keys_list"
+	   "Preco": "aditional_preco_custom_keys_list",
+     "Tamanho": "aditional_sizes_custom_keys_list",
+     "Grupo": "aditional_grupo_produto_custom_keys_list",
+     "Subgrupo": "aditional_subgrupo_produto_custom_keys_list",
+     "Segmento": "aditional_segmento_produto_custom_keys_list",
+     "Linha": "aditional_linha_produto_custom_keys_list",
+     "Categoria": "aditional_categoria_produto_custom_keys_list",
+     "Colecao": "aditional_colecao_custom_keys_list"
 	  }
     }
   },
@@ -72,7 +79,7 @@
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
       "result_list_key": "retorno",
@@ -91,16 +98,33 @@
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
-      "result_list_key": "retorno[0]",
+      "result_list_key": "retorno",
       "rule" : "uid - name",
       "keys": {
         "uid": "GradeId",
         "name": "GradeDescricao"
       }
     }
+  },
+  "aditional_sizes_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tamanhos_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+    "result_list_key": "retorno",
+    "keys": {
+      "name": "itemTamanho"
+    }
+  }
   },
   "aditional_preco_custom_keys_list": {
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tabpreco_get",
@@ -110,7 +134,7 @@
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
       "result_list_key": "retorno",
@@ -122,26 +146,123 @@
       }
     }
   },
-  "aditional_categoria_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/categoria_get",
+  "aditional_grupo_produto_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/grupo_produto_get",
     "method": "GET",
     "send_as_json": true,
-    "erp_search_id": "CatId",
     "queryparam": {
-      "Id": "%REFERENCE_ID%"
+      "audaces": 1
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
       "result_list_key": "retorno",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "GrpprodId",
+        "name": "GrpprodDescricao"
+      }
+    }
+  },
+  "aditional_subgrupo_produto_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/subgrupo_produto_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "SubpId",
+        "name": "SubpDescricao"
+      }
+    }
+  },
+  "aditional_segmento_produto_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/segmento_produto_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "SegId",
+        "name": "SegDescricao"
+      }
+    }
+  },
+  "aditional_linha_produto_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/linha_produto_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "LinId",
+        "name": "LinDescricao"
+      }
+    }
+  },
+  "aditional_categoria_produto_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/categoria_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "rule": "uid - name",
       "keys": {
         "uid": "CatId",
-        "description": "CatDescricao",
-        "date_created": "CatDatacad",
-        "company_id": "CatEmpId",
-        "user_id": "CatUsrId"
+        "name": "CatDescricao"
+      }
+    }
+  },
+  "aditional_colecao_custom_keys_list": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/colecao_get",
+    "method": "GET",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "ColId",
+        "name": "ColDescricao"
       }
     }
   },
@@ -160,7 +281,7 @@
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
       "result_list_key": "retorno.dados",
@@ -191,42 +312,55 @@
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
-	    "audaces": 1
+      "audaces": 1
     },
     "header": {
-      "Token": "{erp_user}"
+      "Token" : "Bearer {token}"
     },
-    "erp_search_id": "Id",
+    "erp_search_id": "id",
     "bodyparam": {},
     "output": {
       "result_list_key": "retorno",
+      "rule" : "uid - name",
       "keys": {
         "uid": "MatId",
         "name": "MatDescricao",
+        "description": "MatDescricao",
+        "reference": "MatId",
         "measure_unit": "MatUnd",
         "product_group": "MatGrupoId",
         "color_id": "CorId",
-        "size": "MecTamanho",
-        "stock_balance": "MecSaldo"
+        "value": "MecSaldo"
+      },
+      "custom_keys" : {},
+      "custom_keys_list": {
+	      "variants": "aditional_cor_custom_keys_list"
       }
     }
+    
   },
   "activity": {
     "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoes_get",
     "method": "GET",
     "send_as_json": true,
+    "erp_search_id": "id",
     "queryparam": {
-	    "audaces": 1
+      "audaces": 1
     },
     "bodyparam": {},
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "output": {
       "result_list_key": "retorno",
       "keys": {
         "uid": "SerId",
-        "name": "SerDescricao"
+        "name": "SerDescricao",
+        "description": "SerDescricao",
+        "reference": "SerId",
+        "value": {
+          "editable": true
+        }
       }
     }
   },
@@ -238,7 +372,7 @@
       "id": "%ERP_SEARCH_ID%"
     },
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "erp_search_id": "id",
     "bodyparam": {},
@@ -259,7 +393,7 @@
       "Id": "%ERP_SEARCH_ID%"
     },
     "header": {
-      "Token": "{erp_user}"
+      "Token": "Bearer {token}"
     },
     "erp_search_id": "Id",
     "bodyparam": {},
@@ -272,6 +406,185 @@
         "amount": "Qtd",
         "technical_sheet_id": "FchId"
       }
+    }
+  },
+  "product": {
+    "endpoint" : "https://app.wikisistemas.com.br/api/wiki_v2/produto_post",
+    "method" : "POST",
+    "send_as_json" : true,
+    "bodyparam": {},
+    "queryparam": 
+    {
+      "audaces": 1
+    },
+    "erp_search_id" : "FchProdId",
+    "header" : 
+    {
+      "Token" : "Bearer {token}"
+    },
+    "output" : 
+    {
+      "result_list_key" : "",
+      "keys" : 
+      {
+        "ProdReferencia": "variants.0.custom_fields.ref.value",
+        "ProdDescricao": "variants.0.description",
+        "ProdSituacao":"variants.0.custom_fields.ProdSituacao.value",
+        "ProdTipo":"variants.0.custom_fields.ProdTipo.value"
+      },
+      "custom_keys" : 
+      {
+        "ListaCores": 
+        [
+          {
+            "CorId": "variants.custom_fields.Cor.value",
+            "CorDescricao": "variants.custom_fields.Cor.value"
+          }
+        ]
+      }
+    }
+  },
+  "garment" : {
+    "endpoint" : "https://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_post",
+    "method" : "POST",
+    "send_as_json" : true,
+    "bodyparam": {},
+    "queryparam": 
+    {
+      "audaces": 1
+    },
+    "erp_search_id" : "FchProdId",
+    "header" : 
+    {
+      "Token" : "Bearer {token}"
+    },
+    "output" : 
+    {
+      "result_list_key" : "",
+      "keys" : 
+      {
+        "FchId": "uid",
+        "FchProdId": "variants.0.custom_fields.ref.value",
+        "FchData":"last_modified",
+        "FchDescricao":"variants.0.description",
+        "ProdReferencia": "variants.0.custom_fields.ref.value",
+        "ProdDescricao": "variants.0.description",
+        "ProdSituacao":"variants.0.custom_fields.ProdSituacao.value",
+        "ProdTipo":"variants.0.custom_fields.ProdTipo.value",
+        "ProdGradeId":"variants.0.custom_fields.Grade.value",
+        "FchAprovado":"1",
+        "FchAtual":"1"
+      },
+      "custom_keys": {
+        "ListaCores": [
+          {
+            "CorId": "variants.custom_fields.Cor.value",
+            "CorDescricao": "variants.custom_fields.Cor.value"
+          }
+        ],
+        "Materiais": [
+          {
+            "MatId": "variants.materials.uid",
+            "MatCorId": "variants.materials.color",
+            "ProdCorId": "variants.custom_fields.Cor.value",
+            "ProdTam": "variants.custom_fields.Tamanho.value",
+            "MatTam": "variants.materials.custom_fields.size.value",
+            "Qtd": "variants.materials.amount",
+            "VlrUnit": "variants.materials.cost"
+          }
+        ],
+        "Servicos": [
+          {
+            "SerId": "variants.activities.uid",
+            "SerVlr": "variants.activities.cost",
+            "SerQtd": "variants.activities.time"
+          }
+        ]
+      },
+      "erp_format": {}
+    }
+  },
+  "picture": {
+    "uses_garment_endpoint": true,
+    "endpoint": "https://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_post",
+    "method": "POST",
+    "send_as_json": true,
+    "queryparam": {
+      "audaces": 1
+    },
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "",
+      "keys": {
+        "FchId": "uid",
+        "FchProdId": "variants.0.custom_fields.ref.value",
+        "FchData": "last_modified",
+        "ProdReferencia": "variants.0.custom_fields.ref.value",
+        "ProdDescricao": "variants.0.description",
+        "FchDescricao": "variants.0.description",
+        "ProdSituacao": "variants.0.custom_fields.ProdSituacao.value",
+        "ProdTipo": "variants.0.custom_fields.ProdTipo.value",
+        "ProdGradeId": "variants.0.custom_fields.Grade.value",
+        "FchAprovado": "1",
+        "FchAtual": "1"
+      },
+      "custom_keys": {
+        "ListaCores": [
+          {
+            "CorId": "variants.custom_fields.Cor.value",
+            "CorDescricao": "variants.custom_fields.Cor.value"
+          }
+        ],
+        "Materiais": [
+          {
+            "MatId": "variants.materials.uid",
+            "MatCorId": "variants.materials.color",
+            "ProdCorId": "variants.custom_fields.Cor.value",
+            "ProdTam": "variants.custom_fields.Tamanho.value",
+            "MatTam": "variants.materials.custom_fields.size.value",
+            "Qtd": "variants.materials.amount",
+            "VlrUnit": "variants.materials.cost"
+          }
+        ],
+        "Servicos": [
+          {
+            "SerId": "variants.activities.uid",
+            "SerVlr": "variants.activities.cost",
+            "SerQtd": "variants.activities.time"
+          }
+        ],
+        "Fotos": [
+          {
+            "fchfId": "pictures.id",
+            "fchfDescricao": "pictures.description",
+            "fchfFoto": "pictures.image_base64"
+          }
+        ]
+      }
+    }
+  },
+  "ficha_tecnica": {
+    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_get",
+    "method": "GET",
+    "send_as_json": true,
+    "erp_search_id": "id",
+    "queryparam": {
+      "pagina": 1,
+      "audaces": 1
+    },
+    "bodyparam": {},
+    "header": {
+      "Token": "Bearer {token}"
+    },
+    "output": {
+      "result_list_key": "retorno.dados",
+      "keys": {
+        "uid": "ProdId"
+      },
+      "custom_keys": {},
+	   "custom_keys_list": {}
     }
   }
 }
