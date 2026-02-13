@@ -17,6 +17,7 @@
             "keys" : {
                 "uid" : "codigo",
                 "name" : "descricao",
+                "description" : "descricao",
                 "reference" : "codigo",
                 "collection" : "colecao",
                 "measure_unit" : "unidade",
@@ -379,7 +380,8 @@
         "endpoint" : "http://servidor:porta/OperacaoLista",
         "method" : "GET",
         "send_as_json" : true,
-        "queryparam" : {},
+        "queryparam" : {
+        },
         "bodyparam" : {},
         "header" : {
             "Token" : "{erp_user}"
@@ -389,6 +391,7 @@
             "keys" : {
                 "uid" : "codigo",
                 "name" : "descricao",
+                "description" : "descricao",
                 "reference" : "descricao",
                 "value": "payServiceValue",
                 "measure_unit": "defaultUnit",
