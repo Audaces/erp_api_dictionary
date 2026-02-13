@@ -1,6 +1,6 @@
 {
     "finished_product" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/Produto",
+        "endpoint" : "http://servidor:porta/Produto",
         "method" : "GET",
         "send_as_json" : false,
         "bodyparam" : {
@@ -27,7 +27,6 @@
                 "collection": "aditional_collection_keys_by_id"
             },
             "custom_keys" : {
-                "status": "status",
                 "estilista": "estilista",
                 "modelista": "modelista",
                 "codfis": "codfis",
@@ -43,12 +42,14 @@
                 "marca": "aditional_marca_custom_keys_list",
                 "etiqueta": "aditional_etiqueta_custom_keys_list",
                 "faixa": "aditional_faixa_custom_keys_list",
-                "linha": "aditional_linha_custom_keys_list"
+                "linha": "aditional_linha_custom_keys_list",
+                "status": "aditional_status_custom_keys_list",
+                "tamanho": "aditional_tamanho_custom_keys_list"
             }
         }
     },
     "aditional_value_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/BuscarPreco",
+        "endpoint" : "http://servidor:porta/BuscarPreco",
         "method" : "GET",
         "send_as_json" : true,
         "erp_search_id" : "produto",
@@ -69,7 +70,7 @@
         }
     },
     "aditional_collection_keys_by_id" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/ColecaoLista",
+        "endpoint" : "http://servidor:porta/ColecaoLista",
         "method" : "GET",
         "send_as_json" : true,
         "bodyparam" : {},
@@ -85,7 +86,7 @@
         }
     },
     "aditional_collection_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/ColecaoLista",
+        "endpoint" : "http://servidor:porta/ColecaoLista",
         "method" : "GET",
         "send_as_json" : true,
         "bodyparam" : {},
@@ -102,7 +103,7 @@
         }
     },
     "aditional_grupo_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/GrupoLista",
+        "endpoint" : "http://servidor:porta/GrupoLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -120,7 +121,7 @@
         }
     },
     "aditional_familia_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/FamiliaLista",
+        "endpoint" : "http://servidor:porta/FamiliaLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -138,7 +139,7 @@
         }
     },
     "aditional_marca_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/MarcaLista",
+        "endpoint" : "http://servidor:porta/MarcaLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -156,7 +157,7 @@
         }
     },
     "aditional_faixa_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/FaixaTamanho",
+        "endpoint" : "http://servidor:porta/FaixaTamanho",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -173,8 +174,42 @@
             }
         }
     },
+    "aditional_tamanho_custom_keys_list" : {
+        "endpoint" : "http://servidor:porta/Tamanho",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "uid" : "tam"
+            }
+        }
+    },
     "aditional_linha_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/Linha",
+        "endpoint" : "http://servidor:porta/Linha",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_status_custom_keys_list" : {
+        "endpoint" : "http://servidor:porta/StatusLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -192,7 +227,7 @@
         }
     },
     "aditional_etiqueta_custom_keys_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/Etiqueta",
+        "endpoint" : "http://servidor:porta/Etiqueta",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -210,7 +245,7 @@
         }
     },
     "aditional_cor_list" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/CorLista",
+        "endpoint" : "http://servidor:porta/CorLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -227,8 +262,62 @@
             }
         }
     },
+    "aditional_parte_custom_keys_list" : {
+        "endpoint" : "http://servidor:porta/ParteProdutoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_aplicacao_custom_keys_list" : {
+        "endpoint" : "http://servidor:porta/AplicacaoLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
+    "aditional_setor_custom_keys_list" : {
+        "endpoint" : "http://servidor:porta/SetorLista",
+        "method" : "GET",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "rule" : "uid - name",
+            "keys" : {
+                "uid" : "codigo",
+                "name" : "descricao"
+            }
+        }
+    },
     "raw_material" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/MaterialLista",
+        "endpoint" : "http://servidor:porta/MaterialLista",
         "method" : "GET",
         "send_as_json" : true,
         "erp_search_id" : "codigo",
@@ -261,12 +350,16 @@
             },
             "custom_keys_list" : {
                 "value": "aditional_value_custom_keys_list",
-                "grupo": "aditional_grupo_custom_keys_list"
+                "grupo": "aditional_grupo_custom_keys_list",
+                "variants": "aditional_cor_list",
+                "aplicacao": "aditional_aplicacao_custom_keys_list",
+                "parte": "aditional_parte_custom_keys_list",
+                "setor": "aditional_setor_custom_keys_list"
             }
         }
     },
     "measure" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/MedidaLista",
+        "endpoint" : "http://servidor:porta/MedidaLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -283,7 +376,7 @@
         }
     },
     "activity" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/OperacaoLista",
+        "endpoint" : "http://servidor:porta/OperacaoLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -302,15 +395,18 @@
                 "time": "",
                 "notes": "",
                 "sector": "",
-                "machine": "maquina"
+                "machine": "maquina",
+                "observation": "observacao"
             },
             "custom_keys" : {
-                "tipo": "tipo"
+                "tipo": "tipo",
+                "ordem": "ordem",
+                "percentual_dif": "perc"
             }
         }
     },
     "group" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/GrupoLista",
+        "endpoint" : "http://servidor:porta/GrupoLista",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {},
@@ -333,7 +429,7 @@
         }
     },
     "picture" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/CarregaImagemProduto",
+        "endpoint" : "http://servidor:porta/CarregaImagemProduto",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {
@@ -356,7 +452,7 @@
         }
     },
     "picture_save" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/ImagemProduto",
+        "endpoint" : "http://servidor:porta/ImagemProduto",
         "method" : "POST",
         "send_as_json" : true,
         "queryparam" : {
@@ -364,10 +460,12 @@
         "header" : {
             "Token" : "{erp_user}"
         },
-        "bodyparam" : {
-            "codigo": "str%GARMENT_UID%",
-            "imagem": "str%IMAGE_RAW%"
-        },
+        "bodyparam" : [
+            {
+                "codigo": "str%GARMENT_UID%",
+                "imagem": "str%IMAGE_RAW%"
+            }
+        ],
         "output" : {
             "result_list_key" : "",
             "keys" : {
@@ -376,7 +474,7 @@
         }
     },
     "variants" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/ProdutoEstoque",
+        "endpoint" : "http://servidor:porta/ProdutoEstoque",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {
@@ -397,7 +495,7 @@
         }
     },
     "variant_items" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/BuscarFichaTecnicaProduto",
+        "endpoint" : "http://servidor:porta/BuscarFichaTecnicaProduto",
         "method" : "GET",
         "send_as_json" : true,
         "queryparam" : {
@@ -422,7 +520,7 @@
         }
     },
     "garment" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/FichaTecnicaProduto",
+        "endpoint" : "http://servidor:porta/FichaTecnicaProduto",
         "method" : "POST",
         "send_as_json" : true,
         "bodyparam" : {
@@ -437,7 +535,6 @@
         "output" : {
             "result_list_key" : "",
             "keys" : {
-                "cor"      : "[variants.Cor]",
                 "codigo"   : "uid",
                 
                 "colecao"  : "variants.0.custom_fields.Colecoes.value",
@@ -449,25 +546,45 @@
                 "marca"    : "variants.0.custom_fields.marca.value",
 
                 "descricao" : "variants.0.description",
-                "unidade"   : "variants.0.unidade",
-                "estilista" : "variants.0.estilista",
-                "modelista" : "variants.0.modelista",                
-                "codfis"    : "variants.0.codfis",
-                "codsped"   : "variants.0.codsped",
-                "status"    : "variants.0.status"
+                "unidade"   : "variants.0.custom_fields.unidade.value",
+                "estilista" : "variants.0.custom_fields.estilista.value",
+                "modelista" : "variants.0.custom_fields.modelista.value",                
+                "codfis"    : "variants.0.custom_fields.codfis.value",
+                "codsped"   : "variants.0.custom_fields.codsped.value",
+                "status"    : "variants.0.custom_fields.status.value"
             },
             "custom_keys" : {
+                "cor": [
+                    {
+                        "cor": "variants.custom_fields.Cor.value",
+                        "cor_i": "variants.custom_fields.Cor.value"
+                    }
+                ],
+                "tamanho": [
+                    {
+                        "tamanho": "variants.custom_fields.tamanho.value"
+                    }
+                ],
                 "services": [
                     {
                         "serviceCode": "variants.activities.uid",
                         "quantity": "variants.activities.time",
-                        "value": "variants.activities.total"
+                        "value": "variants.activities.total",
+                        "machine": "variants.activities.machine",
+                        "descricao": "variants.activities.custom_fields.ref.value",
+                        "ordem": "variants.activities.custom_fields.ordem.value",
+                        "perc": "variants.activities.custom_fields.percentual_dif.value"
                     }
                 ],
                 "rawMaterials": [
                     {
                         "insumo": "variants.materials.uid",
-                        "consumo":"SUM variants.materials.amount"
+                        "consumo":"SUM variants.materials.amount",
+                        "color": "variants.materials.color",
+                        "faixa": "variants.materials.custom_fields.size.value",
+                        "parte": "variants.materials.custom_fields.parte.value",
+                        "aplicacao": "variants.materials.custom_fields.aplicacao.value",
+                        "setor": "variants.materials.custom_fields.setor.value"
                     }
                 ]
             },
@@ -475,8 +592,14 @@
                 "codigo": "uid",
                 "insumo": "productCode",
                 "consumo": "quantity",
+                "faixa": "",
+                "parte": "",
+                "aplicacao": "",
                 "preco": "S",
                 "tipo": "M",
+                "setor": "",
+                "ordem": "",
+                "perc": "",
                 "cor": [
                     {
                         "cor": "LN0000",
@@ -486,14 +609,14 @@
             }
         }
     },
-    "aditional_post_garment" : {
-        "endpoint" : "http://latinaconfec.ddns.net:1990/Produto",
+    "product" : {
+        "endpoint" : "http://servidor:porta/Produto",
         "method" : "POST",
         "send_as_json" : true,
         "queryparam" : {},
         "bodyparam" : {
-            "codigo" : "{null}",
-            "cor" : "",
+            "codigo" : "",
+            "cor" : [],
             "grupo" : "",
             "colecao" : "",
             "faixa" : "",
@@ -508,21 +631,21 @@
             "descricao" : "",
             "estilista" : "",
             "modelista" : "",
-            "descricao2" : "{null}",
-            "preco" : "{null}",
-            "custo" : "{null}",
-            "obs" : "{null}",
-            "obs1" : "{null}",
-            "obs2" : "{null}",
-            "obs3" : "{null}",
-            "peso" : "{null}",
-            "gramatura" : "{null}",
-            "largura" : "{null}",
-            "compri" : "{null}",
-            "espessura" : "{null}",
-            "densidade" : "{null}",
-            "ativo" : "{null}",
-            "codigo2" : "{null}"
+            "descricao2" : "",
+            "preco" : "",
+            "custo" : "",
+            "obs" : "",
+            "obs1" : "",
+            "obs2" : "",
+            "obs3" : "",
+            "peso" : "",
+            "gramatura" : "",
+            "largura" : "",
+            "compri" : "",
+            "espessura" : "",
+            "densidade" : "",
+            "ativo" : "",
+            "codigo2" : ""
         },
         "header" : {
             "Token" : "{erp_user}"
@@ -532,6 +655,50 @@
             "keys" : {
                 "uid" : "produto"
             }
+        }
+    },
+    "operation_post" : {
+        "endpoint" : "http://servidor:porta/Processo",
+        "method" : "POST",
+        "send_as_json" : true,
+        "queryparam" : {},
+        "bodyparam" : [
+            {
+                "ordem": "",
+                "produto": "",
+                "operacao": "",
+                "descricao": "",
+                "perc": "",
+                "maquina": "",
+                "tempo": "",
+                "custo": "",
+                "complemento": "",
+                "parte": "",
+                "compri": ""
+            }
+        ],
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {
+                "status" : "resultado"
+            }
+        }
+    },
+    "delete_insumo" : {
+        "endpoint" : "http://servidor:porta/FichaTecnicaProduto/%CODIGO%/%ID%",
+        "method" : "DELETE",
+        "send_as_json" : false,
+        "queryparam" : {},
+        "bodyparam" : {},
+        "header" : {
+            "Token" : "{erp_user}"
+        },
+        "output" : {
+            "result_list_key" : "",
+            "keys" : {}
         }
     }
 }
