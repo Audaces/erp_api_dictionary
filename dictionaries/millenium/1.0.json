@@ -10,7 +10,7 @@
     "skip_token_endpoint": true
   },
   "finished_product": {
-    "endpoint": "http://servidor:porta/api/millenium_audaces/componentes/busca",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
     "method": "GET",
     "send_as_json": false,
     "bodyparam": {},
@@ -67,7 +67,7 @@
     }
   },
   "raw_material": {
-    "endpoint": "http://servidor:porta/api/millenium_audaces/componentes/busca",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
     "method": "GET",
     "send_as_json": false,
     "bodyparam": {},
@@ -111,7 +111,7 @@
     }
   },
   "activity": {
-    "endpoint": "http://servidor:porta/api/millenium_audaces/componentes/busca",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
     "method": "GET",
     "send_as_json": false,
     "bodyparam": {},
@@ -147,7 +147,7 @@
     }
   },
   "aditional_ciclo_custom_keys_list": {
-    "endpoint": "http://177.103.155.102:6017/api/millenium_audaces/producao/ciclos",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/producao/ciclos",
     "method": "GET",
     "send_as_json": false,
     "pagination_key": "",
@@ -165,7 +165,7 @@
     }
   },
   "aditional_fase_custom_keys_list": {
-    "endpoint": "http://177.103.155.102:6017/api/millenium_audaces/producao/fases",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/producao/fases",
     "method": "GET",
     "send_as_json": false,
     "pagination_key": "",
@@ -185,7 +185,7 @@
     }
   },
   "aditional_estampa_custom_keys_list": {
-    "endpoint": "http://177.103.155.102:6017/api/millenium/estampas/lista_estampas",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium/estampas/lista_estampas",
     "method": "GET",
     "send_as_json": false,
     "pagination_key": "",
@@ -203,7 +203,7 @@
     }
   },
   "picture": {
-    "endpoint": "http://servidor:porta/api/millenium_audaces/fichas_tecnicas/inclui",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/fichas_tecnicas/inclui",
     "method": "POST",
     "send_as_json": true,
     "pagination_key": "",
@@ -226,7 +226,7 @@
     }
   },
   "garment": {
-    "endpoint": "http://servidor:porta/api/millenium_audaces/fichas_tecnicas/inclui",
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/fichas_tecnicas/inclui",
     "method": "POST",
     "send_as_json": true,
     "pagination_key": "",
