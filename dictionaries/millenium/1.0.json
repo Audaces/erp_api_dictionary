@@ -1,0 +1,309 @@
+{
+  "prefix": false,
+  "type_prefixes": {
+    "finished_product": "AC.",
+    "raw_material": "MP.",
+    "activity": "SE."
+  },
+  "auth": {
+    "type": "basic",
+    "skip_token_endpoint": true
+  },
+  "finished_product": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
+    "method": "GET",
+    "send_as_json": false,
+    "bodyparam": {},
+    "queryparam": {
+      "tipo": "AC",
+      "text": "%ERP_SEARCH_ID%",
+      "tabela": "31",
+      "$format": "json"
+    },
+    "erp_search_id": "text",
+    "pagination_key": "",
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "keys": {
+        "uid": "code",
+        "name": "name",
+        "reference": "reference",
+        "collection": "collection",
+        "departamento": "departamento",
+        "marca": "marca",
+        "subcolecao": "subcolecao",
+        "product_group": "product_group",
+        "measure_unit": "measure_unit",
+        "suplier": "supplier",
+        "notes": "notes"
+      },
+      "custom_keys": {
+        "product_group": {
+          "value": "product_group",
+          "editable": false
+        },
+        "usage": "usage"
+      },
+      "custom_keys_list": {
+        "colors": {
+          "field": "Cor",
+          "source": "colors",
+          "id_key": "code",
+          "name_key": "description",
+          "format": "id - name",
+          "editable": true
+        },
+        "sizes": {
+          "field": "Tamanho",
+          "source": "sizes",
+          "name_key": "size",
+          "format": "name",
+          "editable": true
+        },
+        "Ciclo": "aditional_ciclo_custom_keys_list",
+        "Estampa": "aditional_estampa_custom_keys_list"
+      }
+    }
+  },
+  "raw_material": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
+    "method": "GET",
+    "send_as_json": false,
+    "bodyparam": {},
+    "queryparam": {
+      "tipo": "MP",
+      "text": "%ERP_SEARCH_ID%",
+      "tabela": "31",
+      "$format": "json"
+    },
+    "erp_search_id": "text",
+    "pagination_key": "",
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "keys": {
+        "uid": "code",
+        "name": "name",
+        "reference": "reference",
+        "description": "description",
+        "value": "value_",
+        "measure_unit": "measure_unit",
+        "product_group": "product_group",
+        "composition": "composition"
+      },
+      "variant_keys": {
+        "color_id": "colors.code",
+        "color_name": "colors.description",
+        "size": "sizes.size"
+      },
+      "custom_keys": {
+        "product_group": {
+          "value": "product_group",
+          "editable": false
+        },
+        "usage": "usage"
+      },
+      "custom_keys_list": {
+        "Fase": "aditional_fase_custom_keys_list",
+        "Estampa": "aditional_estampa_custom_keys_list"
+      }
+    }
+  },
+  "activity": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/componentes/busca",
+    "method": "GET",
+    "send_as_json": false,
+    "bodyparam": {},
+    "queryparam": {
+      "tipo": "SE",
+      "text": "%ERP_SEARCH_ID%",
+      "tabela": "31",
+      "$format": "json"
+    },
+    "erp_search_id": "text",
+    "pagination_key": "",
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "keys": {
+        "uid": "code",
+        "name": "description",
+        "description": "description",
+        "reference": "reference",
+        "value": "value_",
+        "notes": "notes"
+      },
+      "custom_keys": {
+        "product_group": {
+          "value": "product_group",
+          "editable": false
+        },
+        "usage": "usage"
+      },
+      "custom_keys_list": {
+        "Fase": "aditional_fase_custom_keys_list"
+      }
+    }
+  },
+  "aditional_ciclo_custom_keys_list": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/producao/ciclos",
+    "method": "GET",
+    "send_as_json": false,
+    "pagination_key": "",
+    "queryparam": {
+      "$format": "json"
+    },
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "cod_ciclo",
+        "name": "descricao"
+      }
+    }
+  },
+  "aditional_fase_custom_keys_list": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/producao/fases",
+    "method": "GET",
+    "send_as_json": false,
+    "pagination_key": "",
+    "queryparam": {
+      "cod_ciclo": "",
+      "$format": "json"
+    },
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "rule": "ciclo - Fase uid - name",
+      "keys": {
+        "ciclo": "cod_ciclo",
+        "uid": "cod_fase",
+        "name": "descricao"
+      }
+    }
+  },
+  "aditional_estampa_custom_keys_list": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium/estampas/lista_estampas",
+    "method": "GET",
+    "send_as_json": false,
+    "pagination_key": "",
+    "queryparam": {
+      "$format": "json"
+    },
+    "header": {},
+    "output": {
+      "result_list_key": "value",
+      "rule": "uid - name",
+      "keys": {
+        "uid": "codigo",
+        "name": "descricao"
+      }
+    }
+  },
+  "picture": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/fichas_tecnicas/inclui",
+    "method": "POST",
+    "send_as_json": true,
+    "pagination_key": "",
+    "queryparam": {
+      "tipo": "AC",
+      "$format": "json"
+    },
+    "header": {},
+    "output": {
+      "picture_fields": {
+        "array_name": "fotos",
+        "id_field": "ordem",
+        "description_field": "descricao",
+        "photo_field": "foto"
+      },
+      "result_list_key": "value",
+      "keys": {
+        "uid": "cod_produto"
+      }
+    }
+  },
+  "garment": {
+    "endpoint": "http://SERVIDOR:PORTA/api/millenium_audaces/fichas_tecnicas/inclui",
+    "method": "POST",
+    "send_as_json": true,
+    "pagination_key": "",
+    "queryparam": {
+      "tipo": "AC",
+      "$format": "json"
+    },
+    "header": {},
+    "input": {
+      "keys": {
+        "descricao": "variants.0.description",
+        "cod_ciclo": "variants.0.custom_fields.Ciclo.value",
+        "tipo": "AC",
+        "custo_hora": 0,
+        "cod_produto": "uid"
+      },
+      "queryparam_keys": {
+        "cod_produto": "uid",
+        "descricao": "variants.0.description",
+        "cod_ciclo": "variants.0.custom_fields.Ciclo.value",
+        "tipo": "AC"
+      },
+      "field_transforms": {
+        "numeric_round_2_decimals": ["consumo", "custo", "quantidade"],
+        "extract_id_from_split": ["cod_ciclo", "cod_cor", "cod_materia_prima", "cod_estampa"],
+        "extract_fase_number": ["cod_fase"],
+        "strip_prefix": ["cod_materia_prima", "cod_servico"]
+      },
+      "default_values": {
+        "tipo": "AC",
+        "custo_hora": 0
+      },
+      "custom_keys": {
+        "componentes": {
+          "source": "variants",
+          "deduplicate": false,
+          "fields": {
+            "cod_cor": "custom_fields.Cor.value",
+            "cod_estampa": {
+              "path": "custom_fields.Estampa.value",
+              "split": "id - name",
+              "default_value": "00"
+            },
+            "tamanho": "custom_fields.Tamanho.value",
+            "materias_primas": {
+              "cod_materia_prima": "materials.uid",
+              "cod_cor": "materials.color",
+              "cod_estampa": {
+                "path": "materials.custom_fields.Estampa.value",
+                "split": "id - name",
+                "default_value": "00"
+              },
+              "cod_fase": "materials.custom_fields.Fase.value",
+              "consumo": "materials.amount",
+              "tamanho": "materials.custom_fields.size.value"
+            }
+          }
+        },
+        "servicos": {
+          "source": "variants.activities",
+          "deduplicate": true,
+          "id_field": "cod_servico",
+          "fields": {
+            "cod_servico": "uid",
+            "cod_fase": "custom_fields.Fase.value",
+            "custo": "cost",
+            "quantidade": "time",
+            "descricao": "desc"
+          }
+        }
+      }
+    },
+    "output": {
+      "result_list_key": "value",
+      "keys": {
+        "uid": "cod_produto"
+      }
+    }
+  }
+}

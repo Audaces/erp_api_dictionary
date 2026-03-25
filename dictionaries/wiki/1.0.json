@@ -1,6 +1,6 @@
 {
   "auth": {
-    "endpoint": "http://app.wikisistemas.com.br/api/login",
+    "endpoint": "http://SERVIDOR:PORTA/api/login",
     "method": "POST",
     "send_as_json": true,
     "bodyparam": {
@@ -19,12 +19,14 @@
     }
   },
   "finished_product": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/produto_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/produto_get",
     "method": "GET",
     "send_as_json": true,
     "erp_search_id": "id",
+    "pagination_key": "pagina",
+    "pagination_next_key": "retorno.proxima",
     "queryparam": {
-      "pagina": 1,
+      "ProdDescricao": "%DESCRIPTION%",
       "audaces": 1
     },
     "bodyparam": {},
@@ -72,7 +74,7 @@
     }
   },
   "aditional_cor_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/cor_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/cor_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -91,7 +93,7 @@
     }
   },
   "aditional_grade_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/grade_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/grade_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -110,7 +112,7 @@
     }
   },
   "aditional_sizes_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tamanhos_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/tamanhos_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -127,7 +129,7 @@
   }
   },
   "aditional_preco_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/tabpreco_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/tabpreco_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -147,7 +149,7 @@
     }
   },
   "aditional_grupo_produto_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/grupo_produto_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/grupo_produto_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -167,7 +169,7 @@
     }
   },
   "aditional_subgrupo_produto_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/subgrupo_produto_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/subgrupo_produto_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -187,7 +189,7 @@
     }
   },
   "aditional_segmento_produto_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/segmento_produto_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/segmento_produto_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -207,7 +209,7 @@
     }
   },
   "aditional_linha_produto_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/linha_produto_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/linha_produto_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -227,7 +229,7 @@
     }
   },
   "aditional_categoria_produto_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/categoria_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/categoria_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -247,7 +249,7 @@
     }
   },
   "aditional_colecao_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/colecao_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/colecao_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -267,7 +269,7 @@
     }
   },
   "aditional_saldo_estoque_custom_keys_list": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/saldo_estoque_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/saldo_estoque_get",
     "method": "GET",
     "send_as_json": true,
     "erp_search_id": "est_prod_id",
@@ -308,7 +310,7 @@
     }
   },
   "raw_material": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/materiaprima_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/materiaprima_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -340,7 +342,7 @@
     
   },
   "activity": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoes_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/operacoes_get",
     "method": "GET",
     "send_as_json": true,
     "erp_search_id": "id",
@@ -365,7 +367,7 @@
     }
   },
   "operations_sheet_materials": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/operacoesfichatecnica_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/operacoesfichatecnica_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -386,7 +388,7 @@
     }
   },
   "technical_sheet_materials": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/insumosfichatecnica_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/insumosfichatecnica_get",
     "method": "GET",
     "send_as_json": true,
     "queryparam": {
@@ -409,7 +411,7 @@
     }
   },
   "product": {
-    "endpoint" : "https://app.wikisistemas.com.br/api/wiki_v2/produto_post",
+    "endpoint" : "http://SERVIDOR:PORTA/api/wiki_v2/produto_post",
     "method" : "POST",
     "send_as_json" : true,
     "bodyparam": {},
@@ -445,7 +447,7 @@
     }
   },
   "garment" : {
-    "endpoint" : "https://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_post",
+    "endpoint" : "http://SERVIDOR:PORTA/api/wiki_v2/ficha_tecnica_post",
     "method" : "POST",
     "send_as_json" : true,
     "bodyparam": {},
@@ -506,7 +508,7 @@
   },
   "picture": {
     "uses_garment_endpoint": true,
-    "endpoint": "https://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_post",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/ficha_tecnica_post",
     "method": "POST",
     "send_as_json": true,
     "queryparam": {
@@ -566,7 +568,7 @@
     }
   },
   "ficha_tecnica": {
-    "endpoint": "http://app.wikisistemas.com.br/api/wiki_v2/ficha_tecnica_get",
+    "endpoint": "http://SERVIDOR:PORTA/api/wiki_v2/ficha_tecnica_get",
     "method": "GET",
     "send_as_json": true,
     "erp_search_id": "id",
