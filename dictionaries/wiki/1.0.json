@@ -332,6 +332,7 @@
         "measure_unit": "MatUnd",
         "product_group": "MatGrupoId",
         "color_id": "CorId",
+        "size": "MecTamanho",
         "value": "MecSaldo"
       },
       "custom_keys" : {},
@@ -415,28 +416,62 @@
     "method" : "POST",
     "send_as_json" : true,
     "bodyparam": {},
-    "queryparam": 
+    "queryparam":
     {
       "audaces": 1
     },
     "erp_search_id" : "FchProdId",
-    "header" : 
+    "header" :
     {
       "Token" : "Bearer {token}"
     },
-    "output" : 
+    "input": {
+      "keys": {
+        "ProdReferencia": "variants.0.custom_fields.ref.value",
+        "ProdDescricao": "variants.0.description",
+        "ProdSituacao": "variants.0.custom_fields.ProdSituacao.value",
+        "ProdTipo": "variants.0.custom_fields.ProdTipo.value",
+        "ProdGradeId": "variants.0.custom_fields.Grade.value"
+      },
+      "fields_to_extract_id": ["ProdGradeId"],
+      "integer_fields": ["ProdGradeId"],
+      "custom_keys": {
+        "ListaCores": {
+          "source": "variants",
+          "deduplicate": true,
+          "id_field": "CorId",
+          "fields": {
+            "CorId": {
+              "path": "custom_fields.Cor.value",
+              "split": "id - name"
+            },
+            "CorDescricao": {
+              "path": "custom_fields.Cor.value",
+              "split": "id - name"
+            }
+          },
+          "field_transforms": {
+            "extract_id_from_split": ["CorId"],
+            "extract_name_from_split": ["CorDescricao"]
+          }
+        }
+      }
+    },
+    "output" :
     {
       "result_list_key" : "",
-      "keys" : 
+      "response_wrapper": "retorno",
+      "keys" :
       {
+        "uid": "ProdId",
         "ProdReferencia": "variants.0.custom_fields.ref.value",
         "ProdDescricao": "variants.0.description",
         "ProdSituacao":"variants.0.custom_fields.ProdSituacao.value",
         "ProdTipo":"variants.0.custom_fields.ProdTipo.value"
       },
-      "custom_keys" : 
+      "custom_keys" :
       {
-        "ListaCores": 
+        "ListaCores":
         [
           {
             "CorId": "variants.custom_fields.Cor.value",
@@ -451,39 +486,72 @@
     "method" : "POST",
     "send_as_json" : true,
     "bodyparam": {},
-    "queryparam": 
+    "queryparam":
     {
       "audaces": 1
     },
     "erp_search_id" : "FchProdId",
-    "header" : 
+    "header" :
     {
       "Token" : "Bearer {token}"
     },
-    "output" : 
+    "input": {
+      "keys": {
+        "FchProdId": "variants.0.custom_fields.ref.value",
+        "FchData": "last_modified",
+        "FchDescricao": "variants.0.description"
+      },
+      "default_values": {
+        "FchAprovado": 1,
+        "FchAtual": 1
+      },
+      "custom_keys": {
+        "Materiais": {
+          "source": "variants.materials",
+          "group_by": "uid",
+          "id_field": "MatId",
+          "fields": {
+            "MatId": "uid",
+            "Ficha_Cor": {
+              "MatCorId": "color",
+              "ProdCorId": "custom_fields.Cor.value"
+            },
+            "Ficha_Grade": {
+              "ProdTam": "custom_fields.Tamanho.value",
+              "MatTam": "custom_fields.size.value",
+              "Qtd": "amount"
+            }
+          },
+          "field_transforms": {
+            "extract_id_from_split": ["ProdCorId"]
+          }
+        },
+        "Servicos": {
+          "source": "variants.activities",
+          "deduplicate": true,
+          "id_field": "SerId",
+          "fields": {
+            "SerId": "uid",
+            "SerVlr": "cost",
+            "TempoMedioHrs": "time"
+          }
+        }
+      }
+    },
+    "output" :
     {
       "result_list_key" : "",
-      "keys" : 
+      "uid_field": "FchId",
+      "response_wrapper": "retorno",
+      "keys" :
       {
+        "uid": "FchId",
         "FchId": "uid",
         "FchProdId": "variants.0.custom_fields.ref.value",
         "FchData":"last_modified",
-        "FchDescricao":"variants.0.description",
-        "ProdReferencia": "variants.0.custom_fields.ref.value",
-        "ProdDescricao": "variants.0.description",
-        "ProdSituacao":"variants.0.custom_fields.ProdSituacao.value",
-        "ProdTipo":"variants.0.custom_fields.ProdTipo.value",
-        "ProdGradeId":"variants.0.custom_fields.Grade.value",
-        "FchAprovado":"1",
-        "FchAtual":"1"
+        "FchDescricao":"variants.0.description"
       },
       "custom_keys": {
-        "ListaCores": [
-          {
-            "CorId": "variants.custom_fields.Cor.value",
-            "CorDescricao": "variants.custom_fields.Cor.value"
-          }
-        ],
         "Materiais": [
           {
             "MatId": "variants.materials.uid",
@@ -499,7 +567,7 @@
           {
             "SerId": "variants.activities.uid",
             "SerVlr": "variants.activities.cost",
-            "SerQtd": "variants.activities.time"
+            "TempoMedioHrs": "variants.activities.time"
           }
         ]
       },
@@ -519,26 +587,19 @@
     },
     "output": {
       "result_list_key": "",
+      "picture_fields": {
+        "array_name": "Fotos",
+        "id_field": "fchfId",
+        "description_field": "fchfDescricao",
+        "photo_field": "fchfFoto"
+      },
       "keys": {
         "FchId": "uid",
         "FchProdId": "variants.0.custom_fields.ref.value",
         "FchData": "last_modified",
-        "ProdReferencia": "variants.0.custom_fields.ref.value",
-        "ProdDescricao": "variants.0.description",
-        "FchDescricao": "variants.0.description",
-        "ProdSituacao": "variants.0.custom_fields.ProdSituacao.value",
-        "ProdTipo": "variants.0.custom_fields.ProdTipo.value",
-        "ProdGradeId": "variants.0.custom_fields.Grade.value",
-        "FchAprovado": "1",
-        "FchAtual": "1"
+        "FchDescricao": "variants.0.description"
       },
       "custom_keys": {
-        "ListaCores": [
-          {
-            "CorId": "variants.custom_fields.Cor.value",
-            "CorDescricao": "variants.custom_fields.Cor.value"
-          }
-        ],
         "Materiais": [
           {
             "MatId": "variants.materials.uid",
@@ -554,7 +615,7 @@
           {
             "SerId": "variants.activities.uid",
             "SerVlr": "variants.activities.cost",
-            "SerQtd": "variants.activities.time"
+            "TempoMedioHrs": "variants.activities.time"
           }
         ],
         "Fotos": [
@@ -581,9 +642,10 @@
       "Token": "Bearer {token}"
     },
     "output": {
-      "result_list_key": "retorno.dados",
+      "response_wrapper": "retorno",
+      "result_list_key": "retorno",
       "keys": {
-        "uid": "ProdId"
+        "uid": "FchProdId"
       },
       "custom_keys": {},
 	   "custom_keys_list": {}
