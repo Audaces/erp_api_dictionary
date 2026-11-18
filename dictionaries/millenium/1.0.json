@@ -97,6 +97,7 @@
         "color_name": "colors.description",
         "size": "sizes.size"
       },
+      "color_name_from_item": true,
       "custom_keys": {
         "product_group": {
           "value": "product_group",
